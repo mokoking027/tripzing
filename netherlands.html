@@ -1,0 +1,1358 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Netherlands - Vibrant Travel Itinerary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-main: #FAFAFA;
+            --text-dark: #2D3142;
+            --text-light: #909CC2;
+
+            --tulip-pink: #FF7096;
+            --tulip-yellow: #FFD166;
+            --sky-blue: #8ECAE6;
+            --dutch-blue: #219EBC;
+            --soft-green: #06D6A0;
+            --dutch-orange: #F77F00;
+
+            --glass-bg: rgba(255, 255, 255, 0.85);
+            --glass-border: rgba(255, 255, 255, 0.4);
+
+            --font-main: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-main);
+            background-color: var(--bg-main);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: 0.5s ease;
+            background: transparent;
+        }
+
+        nav.scrolled {
+            padding: 15px 50px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 1px;
+            transition: 0.5s;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav.scrolled .logo {
+            color: var(--dutch-blue);
+            text-shadow: none;
+        }
+
+        .logo span {
+            color: var(--tulip-pink);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 5px;
+            transition: 0.5s;
+            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text-dark);
+            text-shadow: none;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--dutch-orange);
+            transition: 0.3s;
+            border-radius: 2px;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/tulip.jpg') center/cover;
+            animation: slowZoom 25s infinite alternate linear;
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(33, 158, 188, 0.3), rgba(255, 112, 150, 0.2), var(--bg-main));
+            z-index: -1;
+        }
+
+        .hero-content {
+            z-index: 1;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeUp 1.5s ease forwards 0.5s;
+        }
+
+        .hero h1 {
+            font-size: 7rem;
+            font-weight: 800;
+            letter-spacing: 5px;
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero p {
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 3px;
+            color: white;
+            text-transform: uppercase;
+            text-shadow: 0 5px 20px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.2);
+            padding: 10px 30px;
+            border-radius: 50px;
+            backdrop-filter: blur(10px);
+            display: inline-block;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: var(--dutch-blue);
+            text-decoration: none;
+            opacity: 0.8;
+            animation: float 2s infinite ease-in-out;
+            font-size: 0.9rem;
+            font-weight: 600;
+            letter-spacing: 2px;
+        }
+
+        .scroll-icon {
+            font-size: 1.5rem;
+        }
+
+        .section {
+            padding: 100px 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-size: 3rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--dutch-orange);
+            font-weight: 600;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .info-panel {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+            margin-bottom: 60px;
+        }
+
+        .info-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 20px;
+            padding: 25px;
+            width: 260px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(33, 158, 188, 0.1);
+        }
+
+        .info-card:nth-child(1) {
+            border-top: 4px solid var(--tulip-pink);
+        }
+
+        .info-card:nth-child(2) {
+            border-top: 4px solid var(--tulip-yellow);
+        }
+
+        .info-card:nth-child(3) {
+            border-top: 4px solid var(--sky-blue);
+        }
+
+        .info-card:nth-child(4) {
+            border-top: 4px solid var(--soft-green);
+        }
+
+        .info-card:hover {
+            transform: translateY(-15px);
+            box-shadow: 0 20px 40px rgba(33, 158, 188, 0.2);
+        }
+
+        .info-icon {
+            font-size: 2.5rem;
+            color: var(--dutch-blue);
+        }
+
+        .info-text h4 {
+            font-size: 1.1rem;
+            color: var(--text-dark);
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .info-text p {
+            font-size: 0.95rem;
+            color: var(--text-light);
+            font-weight: 500;
+        }
+
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 280px;
+            gap: 20px;
+        }
+
+        .place-card {
+            position: relative;
+            border-radius: 24px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .place-amsterdam {
+            grid-column: 1 / 8;
+            grid-row: 1 / 3;
+        }
+
+        .place-keukenhof {
+            grid-column: 8 / 13;
+            grid-row: 1 / 2;
+        }
+
+        .place-rotterdam {
+            grid-column: 8 / 13;
+            grid-row: 2 / 3;
+        }
+
+        .place-utrecht {
+            grid-column: 1 / 6;
+            grid-row: 3 / 4;
+        }
+
+        .place-zaanse {
+            grid-column: 6 / 13;
+            grid-row: 3 / 4;
+        }
+
+        .place-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .place-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(45, 49, 66, 0.9) 0%, transparent 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            transition: 0.4s;
+        }
+
+        .place-card:hover img {
+            transform: scale(1.1) rotate(1deg);
+        }
+
+        .place-amsterdam:hover .place-overlay {
+            background: linear-gradient(to top, rgba(255, 112, 150, 0.85) 0%, transparent 70%);
+        }
+
+        .place-keukenhof:hover .place-overlay {
+            background: linear-gradient(to top, rgba(255, 209, 102, 0.85) 0%, transparent 70%);
+        }
+
+        .place-rotterdam:hover .place-overlay {
+            background: linear-gradient(to top, rgba(33, 158, 188, 0.85) 0%, transparent 70%);
+        }
+
+        .place-utrecht:hover .place-overlay {
+            background: linear-gradient(to top, rgba(247, 127, 0, 0.85) 0%, transparent 70%);
+        }
+
+        .place-zaanse:hover .place-overlay {
+            background: linear-gradient(to top, rgba(6, 214, 160, 0.85) 0%, transparent 70%);
+        }
+
+        .place-title {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: white;
+            transition: 0.4s;
+        }
+
+        .place-desc {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            margin-top: 10px;
+            font-weight: 400;
+        }
+
+        .place-card:hover .place-desc {
+            max-height: 100px;
+        }
+
+        .place-card:hover .place-title {
+            transform: translateY(-5px);
+        }
+
+        .experiences-section {
+            background-color: #fff;
+            padding: 100px 0;
+            border-radius: 40px;
+            margin: 0 20px;
+            box-shadow: 0 20px 50px rgba(0, 0, 0, 0.02);
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+            padding: 0 40px;
+        }
+
+        .culture-card {
+            background: var(--bg-main);
+            border-radius: 20px;
+            padding: 25px;
+            text-align: center;
+            transition: 0.4s;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .culture-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, var(--sky-blue), var(--tulip-pink));
+            opacity: 0;
+            transition: 0.4s;
+            z-index: -1;
+            border-radius: 20px;
+        }
+
+        .culture-card:hover::before {
+            opacity: 0.05;
+        }
+
+        .culture-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(33, 158, 188, 0.15);
+        }
+
+        .culture-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            transition: 0.4s;
+        }
+
+        .culture-card:hover .culture-img {
+            transform: scale(1.05);
+        }
+
+        .culture-card h4 {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: var(--text-dark);
+            margin-bottom: 10px;
+        }
+
+        .culture-card p {
+            font-size: 0.9rem;
+            color: var(--text-light);
+            line-height: 1.6;
+        }
+
+        .food-container {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 20px 0;
+            scrollbar-width: none;
+            scroll-snap-type: x mandatory;
+        }
+
+        .food-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .food-card {
+            min-width: 300px;
+            height: 380px;
+            border-radius: 24px;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            scroll-snap-align: center;
+            cursor: pointer;
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.1);
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.6s ease;
+        }
+
+        .food-card:hover img {
+            transform: scale(1.15) rotate(-2deg);
+        }
+
+        .food-overlay {
+            position: absolute;
+            inset: 0;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background: linear-gradient(to top, rgba(45, 49, 66, 0.9), transparent 50%);
+            transition: 0.4s;
+        }
+
+        .food-card:hover .food-overlay {
+            background: linear-gradient(to top, rgba(247, 127, 0, 0.8), transparent 60%);
+        }
+
+        .food-card h3 {
+            font-size: 1.6rem;
+            font-weight: 700;
+            color: white;
+            margin-bottom: 5px;
+            transform: translateY(10px);
+            transition: 0.4s;
+        }
+
+        .food-card p {
+            font-size: 1rem;
+            color: var(--tulip-yellow);
+            font-weight: 500;
+            opacity: 0;
+            transform: translateY(10px);
+            transition: 0.4s;
+        }
+
+        .food-card:hover h3 {
+            transform: translateY(0);
+        }
+
+        .food-card:hover p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 0;
+            height: 100%;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--sky-blue), var(--tulip-pink), var(--tulip-yellow));
+            border-radius: 4px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 90px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 30px;
+            top: 25px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: white;
+            border: 4px solid var(--dutch-blue);
+            box-shadow: 0 0 0 4px rgba(33, 158, 188, 0.2);
+            transition: 0.4s;
+            z-index: 2;
+        }
+
+        .timeline-card {
+            background: #fff;
+            border-radius: 20px;
+            overflow: hidden;
+            transition: 0.4s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+            border: 1px solid rgba(0, 0, 0, 0.02);
+        }
+
+        .timeline-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(33, 158, 188, 0.15);
+        }
+
+        .timeline-item:hover .timeline-dot {
+            background: var(--tulip-pink);
+            border-color: white;
+            transform: scale(1.2);
+        }
+
+        .timeline-header {
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: #fff;
+        }
+
+        .day-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .day-badge {
+            background: var(--sky-blue);
+            color: white;
+            padding: 6px 16px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .day-title {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--text-dark);
+        }
+
+        .timeline-icon {
+            transition: 0.4s;
+            color: var(--text-light);
+            font-size: 1.2rem;
+        }
+
+        .timeline-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background: #fff;
+        }
+
+        .timeline-body {
+            padding: 0 30px 30px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            margin-top: 10px;
+            padding-top: 20px;
+        }
+
+        .timeline-details {
+            display: flex;
+            gap: 20px;
+            color: var(--dutch-blue);
+            font-size: 0.95rem;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+
+        .timeline-details span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timeline-body ul {
+            list-style: none;
+        }
+
+        .timeline-body li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: var(--text-dark);
+            font-size: 1rem;
+        }
+
+        .timeline-body li i {
+            color: var(--tulip-pink);
+            margin-top: 4px;
+            font-size: 1rem;
+        }
+
+        .timeline-item.active .timeline-content {
+            max-height: 500px;
+        }
+
+        .timeline-item.active .timeline-icon {
+            transform: rotate(180deg);
+            color: var(--dutch-orange);
+        }
+
+        .timeline-item.active .timeline-dot {
+            background: var(--dutch-orange);
+            border-color: white;
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+            margin-top: 50px;
+            background: url('images/damrak.jpg') center/cover fixed;
+        }
+
+        .cta-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(33, 158, 188, 0.85);
+            backdrop-filter: blur(5px);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 45px;
+            font-size: 1.05rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--tulip-yellow), var(--dutch-orange));
+            color: white;
+            border: none;
+            box-shadow: 0 10px 25px rgba(247, 127, 0, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 15px 35px rgba(247, 127, 0, 0.6);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.1);
+            color: white;
+            border: 2px solid white;
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: white;
+            color: var(--dutch-blue);
+            transform: translateY(-5px) scale(1.05);
+        }
+
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            background: #fff;
+            color: var(--text-light);
+            font-size: 0.95rem;
+            font-weight: 500;
+        }
+
+        footer span {
+            color: var(--tulip-pink);
+            font-weight: 800;
+            font-size: 1.2rem;
+        }
+
+        @keyframes slowZoom {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.15);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(-50%);
+            }
+
+            50% {
+                transform: translateY(10px) translateX(-50%);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 1s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media(max-width: 992px) {
+            .hero h1 {
+                font-size: 5rem;
+                letter-spacing: 2px;
+            }
+
+            .places-grid {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .place-card {
+                height: 300px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                padding-left: 60px;
+            }
+
+            .timeline-dot {
+                left: 10px;
+                width: 20px;
+                height: 20px;
+            }
+        }
+
+        @media(max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+                letter-spacing: 1px;
+            }
+
+            .hero p {
+                font-size: 1rem;
+            }
+
+            .info-panel {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info-card {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .timeline-icon {
+                position: absolute;
+                right: 25px;
+                top: 25px;
+            }
+
+            .timeline-details {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .experiences-section {
+                margin: 0;
+                border-radius: 0;
+                padding: 60px 0;
+            }
+
+            .culture-grid {
+                padding: 0 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <a href="#" class="logo">Trip<span>zing</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#experiences">Experiences</a></li>
+            <li><a href="#cuisine">Food</a></li>
+            <li><a href="itinerary.html">Itinerary</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Netherlands</h1>
+            <p>Where Colors Meet Calm</p>
+        </div>
+        <a href="#explore" class="scroll-down">
+            <i class="fa-solid fa-arrow-down scroll-icon"></i>
+        </a>
+    </header>
+
+    <div class="info-panel" id="explore">
+        <div class="info-card reveal">
+            <i class="fa-regular fa-calendar-check info-icon"></i>
+            <div class="info-text">
+                <h4>Best Time</h4>
+                <p>April - May (Tulips)</p>
+            </div>
+        </div>
+        <div class="info-card reveal" style="transition-delay: 0.1s">
+            <i class="fa-solid fa-euro-sign info-icon"></i>
+            <div class="info-text">
+                <h4>Currency</h4>
+                <p>Euro (€)</p>
+            </div>
+        </div>
+        <div class="info-card reveal" style="transition-delay: 0.2s">
+            <i class="fa-solid fa-comments info-icon"></i>
+            <div class="info-text">
+                <h4>Language</h4>
+                <p>Dutch & English</p>
+            </div>
+        </div>
+        <div class="info-card reveal" style="transition-delay: 0.3s">
+            <i class="fa-solid fa-bicycle info-icon"></i>
+            <div class="info-text">
+                <h4>Travel Tip</h4>
+                <p>Rent a bicycle!</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="destinations" class="section">
+        <div class="section-header reveal">
+            <p>Picturesque Destinations</p>
+            <h2>Discover the Dutch Charm</h2>
+        </div>
+        <div class="places-grid">
+            <div class="place-card place-amsterdam reveal">
+                <img src="images/damrak.jpg"
+                    loading="lazy" alt="Amsterdam">
+                <div class="place-overlay">
+                    <h3 class="place-title">Amsterdam</h3>
+                    <p class="place-desc">Iconic canals, world-class museums, and vibrant cycling culture.</p>
+                </div>
+            </div>
+            <div class="place-card place-keukenhof reveal" style="transition-delay: 0.1s">
+                <img src="images/tulips.jpg" loading="lazy" alt="Keukenhof">
+                <div class="place-overlay">
+                    <h3 class="place-title">Keukenhof</h3>
+                    <p class="place-desc">The Garden of Europe, blooming with millions of colorful tulips.</p>
+                </div>
+            </div>
+            <div class="place-card place-rotterdam reveal" style="transition-delay: 0.2s">
+                <img src="images/rotdam.jpg" loading="lazy" alt="Rotterdam">
+                <div class="place-overlay">
+                    <h3 class="place-title">Rotterdam</h3>
+                    <p class="place-desc">A modern metropolis known for its cutting-edge architecture and port.</p>
+                </div>
+            </div>
+            <div class="place-card place-utrecht reveal" style="transition-delay: 0.1s">
+                <img src="images/utrcht.jpg" loading="lazy" alt="Utrecht">
+                <div class="place-overlay">
+                    <h3 class="place-title">Utrecht</h3>
+                    <p class="place-desc">Historic charm, unique split-level canals, and cozy cafes.</p>
+                </div>
+            </div>
+            <div class="place-card place-zaanse reveal" style="transition-delay: 0.2s">
+                <img src="images/zaanse.jpg" loading="lazy" alt="Zaanse Schans">
+                <div class="place-overlay">
+                    <h3 class="place-title">Zaanse Schans</h3>
+                    <p class="place-desc">Step back in time with traditional windmills and wooden houses.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiences" class="experiences-section">
+        <div class="section-header reveal">
+            <p>Live Like a Local</p>
+            <h2>Authentic Experiences</h2>
+        </div>
+        <div class="culture-grid">
+            <div class="culture-card reveal">
+                <img src="images/cycle.jpg" loading="lazy" alt="Cycling" class="culture-img">
+                <h4>Cycling Culture</h4>
+                <p>Join the locals and explore cities on two wheels along dedicated bike paths.</p>
+            </div>
+            <div class="culture-card reveal" style="transition-delay: 0.1s">
+                <img src="images/damrak.jpg"
+                    loading="lazy" alt="Canal Cruise" class="culture-img">
+                <h4>Canal Cruises</h4>
+                <p>Glide peacefully through historic waterways and admire 17th-century architecture.</p>
+            </div>
+            <div class="culture-card reveal" style="transition-delay: 0.2s">
+                <img src="images/kndrdk.jpg" loading="lazy" alt="Windmills" class="culture-img">
+                <h4>Historic Windmills</h4>
+                <p>Witness the brilliant engineering of traditional Dutch windmills at Kinderdijk.</p>
+            </div>
+            <div class="culture-card reveal" style="transition-delay: 0.3s">
+                <img src="images/flowr.jpg" loading="lazy" alt="Flower Markets" class="culture-img">
+                <h4>Flower Markets</h4>
+                <p>Wander through floating markets filled with vibrant blooms and tulip bulbs.</p>
+            </div>
+            <div class="culture-card reveal" style="transition-delay: 0.4s">
+                <img src="images/gogh.jpg" loading="lazy" alt="Museums"
+                    class="culture-img">
+                <h4>World-Class Art</h4>
+                <p>Immerse yourself in masterpieces at the Van Gogh Museum and Rijksmuseum.</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="cuisine" class="section">
+        <div class="section-header reveal">
+            <p>Taste the Netherlands</p>
+            <h2>Local Delights</h2>
+        </div>
+        <div class="food-container reveal">
+            <div class="food-card">
+                <img src="images/stroop.jpg" loading="lazy" alt="Stroopwafels">
+                <div class="food-overlay">
+                    <h3>Stroopwafels</h3>
+                    <p>Sweet caramel waffled perfection.</p>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="images/cheese.jpg" loading="lazy" alt="Dutch Cheese">
+                <div class="food-overlay">
+                    <h3>Dutch Gouda</h3>
+                    <p>World-famous creamy cheese.</p>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="images/poffrt.jpg" loading="lazy" alt="Poffertjes">
+                <div class="food-overlay">
+                    <h3>Poffertjes</h3>
+                    <p>Fluffy mini pancakes with powdered sugar.</p>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="images/fries.jpg" loading="lazy"
+                    alt="Fries">
+                <div class="food-overlay">
+                    <h3>Vlaamse Frites</h3>
+                    <p>Thick-cut fries with creamy mayo.</p>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="images/herrng.jpg" loading="lazy"
+                    alt="Herring">
+                <div class="food-overlay">
+                    <h3>Dutch Herring</h3>
+                    <p>A traditional delicacy with onions.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="itinerary" class="section">
+        <div class="section-header reveal">
+            <p>7 Days of Magic</p>
+            <h2>The Dutch Itinerary</h2>
+        </div>
+        <div class="timeline">
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header" onclick="toggleTimeline(this)">
+                        <div class="day-info">
+                            <span class="day-badge">Day 1</span>
+                            <h3 class="day-title">Arrival in Amsterdam</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-body">
+                            <div class="timeline-details">
+                                <span><i class="fa-solid fa-hotel"></i> Eden Hotel Amsterdam</span>
+                                <span><i class="fa-solid fa-utensils"></i> The Pantry (Dutch cuisine)</span>
+                            </div>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Arrival & hotel check-in.</li>
+                                <li><i class="fa-solid fa-check"></i> Canal-side evening walk.</li>
+                                <li><i class="fa-solid fa-check"></i> Explore Leidseplein nightlife.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header" onclick="toggleTimeline(this)">
+                        <div class="day-info">
+                            <span class="day-badge" style="background: var(--tulip-pink);">Day 2</span>
+                            <h3 class="day-title">Amsterdam Highlights</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-body">
+                            <div class="timeline-details">
+                                <span><i class="fa-solid fa-hotel"></i> Stay: Amsterdam</span>
+                                <span><i class="fa-solid fa-utensils"></i> Foodhallen</span>
+                            </div>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Anne Frank House.</li>
+                                <li><i class="fa-solid fa-check"></i> Rijksmuseum.</li>
+                                <li><i class="fa-solid fa-check"></i> Van Gogh Museum.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header" onclick="toggleTimeline(this)">
+                        <div class="day-info">
+                            <span class="day-badge"
+                                style="background: var(--tulip-yellow); color: var(--text-dark);">Day 3</span>
+                            <h3 class="day-title">Zaanse Schans & Volendam</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-body">
+                            <div class="timeline-details">
+                                <span><i class="fa-solid fa-hotel"></i> Stay: Amsterdam</span>
+                                <span><i class="fa-solid fa-utensils"></i> Local seafood in Volendam</span>
+                            </div>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Windmills at Zaanse Schans.</li>
+                                <li><i class="fa-solid fa-check"></i> Cheese factory visit.</li>
+                                <li><i class="fa-solid fa-check"></i> Volendam fishing village.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header" onclick="toggleTimeline(this)">
+                        <div class="day-info">
+                            <span class="day-badge" style="background: var(--soft-green);">Day 4</span>
+                            <h3 class="day-title">Day Trip to Utrecht</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-body">
+                            <div class="timeline-details">
+                                <span><i class="fa-solid fa-hotel"></i> Stay: Amsterdam</span>
+                                <span><i class="fa-solid fa-utensils"></i> The Streetfood Club</span>
+                            </div>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Explore Utrecht canals.</li>
+                                <li><i class="fa-solid fa-check"></i> Dom Tower climb.</li>
+                                <li><i class="fa-solid fa-check"></i> Old town exploration.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header" onclick="toggleTimeline(this)">
+                        <div class="day-info">
+                            <span class="day-badge" style="background: var(--dutch-orange);">Day 5</span>
+                            <h3 class="day-title">Rotterdam & The Hague</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-body">
+                            <div class="timeline-details">
+                                <span><i class="fa-solid fa-hotel"></i> Stay: Amsterdam</span>
+                                <span><i class="fa-solid fa-utensils"></i> Markthal Rotterdam</span>
+                            </div>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Cube Houses (Rotterdam).</li>
+                                <li><i class="fa-solid fa-check"></i> Erasmus Bridge.</li>
+                                <li><i class="fa-solid fa-check"></i> Peace Palace (The Hague).</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header" onclick="toggleTimeline(this)">
+                        <div class="day-info">
+                            <span class="day-badge" style="background: var(--sky-blue);">Day 6</span>
+                            <h3 class="day-title">Giethoorn Village</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-body">
+                            <div class="timeline-details">
+                                <span><i class="fa-solid fa-hotel"></i> Stay: Amsterdam</span>
+                                <span><i class="fa-solid fa-utensils"></i> Canal-side café</span>
+                            </div>
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Boat ride in Giethoorn.</li>
+                                <li><i class="fa-solid fa-check"></i> Explore "Dutch Venice".</li>
+                                <li><i class="fa-solid fa-check"></i> Relax in nature.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header" onclick="toggleTimeline(this)">
+                        <div class="day-info">
+                            <span class="day-badge" style="background: var(--tulip-pink);">Day 7</span>
+                            <h3 class="day-title">Shopping & Departure</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-body">
+                            <ul>
+                                <li><i class="fa-solid fa-check"></i> Visit Kalverstraat shopping street.</li>
+                                <li><i class="fa-solid fa-check"></i> Souvenir shopping.</li>
+                                <li><i class="fa-solid fa-check"></i> Departure ✈️.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-overlay"></div>
+        <div class="cta-content reveal">
+            <h2>Ready to wander through the tulips?</h2>
+            <div class="btn-group">
+                <a href="#" class="btn btn-primary">Plan Your Trip</a>
+                <a href="#destinations" class="btn btn-outline">Explore More</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Crafted with love for <span>Tripzing</span>. Enjoy the vibrant Netherlands.</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        function toggleTimeline(element) {
+            const item = element.closest('.timeline-item');
+            document.querySelectorAll('.timeline-item').forEach(i => {
+                if (i !== item) i.classList.remove('active');
+            });
+            item.classList.toggle('active');
+        }
+        document.querySelector('.timeline-item').classList.add('active');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

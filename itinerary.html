@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Itinerary - Tripzing</title>
+  <meta name="description"
+    content="Plan your perfect travel itinerary with Tripzing. Explore curated trip templates for adventure, relaxation, cultural and honeymoon trips.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+  <style>
+    :root {
+      --cream: #1E1A17;
+      --warm-white: #F0EAE0;
+      --gold: #C8A96A;
+      --gold-light: #E0CDA5;
+      --gold-dark: #A67C52;
+      --brown: #F0EAE0;
+      --brown-mid: #B8ADA0;
+      --brown-light: #8A7E72;
+      --charcoal: #F0EAE0;
+      --sage: #7A9E7E;
+      --muted: #9C9084;
+      --mauve: #C8A96A;
+      --mauve-light: #E0CDA5;
+      --section-alt: #24201C;
+      --card-bg: #2E2822;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box
+    }
+
+    body {
+      font-family: 'DM Sans', sans-serif;
+      background: var(--cream);
+      color: var(--muted);
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased
+    }
+
+    ::-webkit-scrollbar {
+      width: 5px
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--cream)
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--gold);
+      border-radius: 4px
+    }
+
+    .bg-orb {
+      position: fixed;
+      border-radius: 50%;
+      filter: blur(110px);
+      pointer-events: none;
+      z-index: 0;
+      opacity: .3
+    }
+
+    .orb1 {
+      width: 520px;
+      height: 520px;
+      background: radial-gradient(circle, rgba(200, 169, 106, .25), transparent 70%);
+      top: -120px;
+      left: -120px;
+      animation: drift1 22s ease-in-out infinite
+    }
+
+    .orb2 {
+      width: 420px;
+      height: 420px;
+      background: radial-gradient(circle, rgba(122, 158, 126, .2), transparent 70%);
+      top: 350px;
+      right: -80px;
+      animation: drift2 26s ease-in-out infinite
+    }
+
+    .orb3 {
+      width: 360px;
+      height: 360px;
+      background: radial-gradient(circle, rgba(200, 169, 106, .15), transparent 70%);
+      bottom: 80px;
+      left: 28%;
+      animation: drift3 20s ease-in-out infinite
+    }
+
+    @keyframes drift1 {
+
+      0%,
+      100% {
+        transform: translate(0, 0)
+      }
+
+      40% {
+        transform: translate(25px, 18px)
+      }
+
+      80% {
+        transform: translate(-12px, 30px)
+      }
+    }
+
+    @keyframes drift2 {
+
+      0%,
+      100% {
+        transform: translate(0, 0)
+      }
+
+      50% {
+        transform: translate(-25px, -15px)
+      }
+    }
+
+    @keyframes drift3 {
+
+      0%,
+      100% {
+        transform: translate(0, 0)
+      }
+
+      50% {
+        transform: translate(18px, -22px)
+      }
+    }
+
+    .page-wrap {
+      min-height: 100vh;
+      position: relative
+    }
+
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 18px 36px;
+      background: rgba(250, 248, 244, .88);
+      backdrop-filter: blur(14px);
+      border-bottom: 1px solid rgba(180, 160, 130, .1);
+      animation: slideDown .5s ease both
+    }
+
+    @keyframes slideDown {
+      from {
+        transform: translateY(-18px);
+        opacity: 0
+      }
+
+      to {
+        transform: translateY(0);
+        opacity: 1
+      }
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 22px;
+      font-weight: 700;
+      color: #2c2418
+    }
+
+    .logo em {
+      color: #8b7355;
+      font-style: italic
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 26px
+    }
+
+    .nav-links a {
+      color: #9a8b78;
+      font-size: 13px;
+      text-decoration: none;
+      letter-spacing: .4px;
+      font-weight: 500;
+      transition: color .25s
+    }
+
+    .nav-links a:hover,
+    .nav-links a.on {
+      color: #2c2418
+    }
+
+    .nav-links a.on {
+      border-bottom: 1.5px solid #8b7355;
+      padding-bottom: 2px
+    }
+
+    .content {
+      position: relative;
+      z-index: 5;
+      max-width: 1080px;
+      margin: 0 auto;
+      padding: 52px 32px 90px
+    }
+
+    @keyframes fadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(22px)
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0)
+      }
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0
+      }
+
+      to {
+        opacity: 1
+      }
+    }
+
+    @keyframes gentleFloat {
+
+      0%,
+      100% {
+        transform: translateY(0)
+      }
+
+      50% {
+        transform: translateY(-5px)
+      }
+    }
+
+    .paper {
+      background: #fff;
+      border: 1px solid rgba(180, 160, 130, .12);
+      border-radius: 18px;
+      box-shadow: 0 1px 3px rgba(60, 45, 25, .04), 0 8px 28px rgba(60, 45, 25, .05)
+    }
+
+    .hero {
+      text-align: center;
+      padding: 60px 40px 52px;
+      margin-bottom: 48px;
+      background: linear-gradient(165deg, #fff 0%, #f5f0e8 100%);
+      border-radius: 24px;
+      border: 1px solid rgba(180, 160, 130, .1);
+      box-shadow: 0 2px 6px rgba(60, 45, 25, .04), 0 12px 40px rgba(60, 45, 25, .06);
+      position: relative;
+      overflow: hidden;
+      animation: fadeUp .7s ease both
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      right: 0;
+      width: 220px;
+      height: 220px;
+      background: radial-gradient(circle, rgba(186, 214, 194, .2), transparent 70%);
+      pointer-events: none
+    }
+
+    .hero::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 180px;
+      height: 180px;
+      background: radial-gradient(circle, rgba(215, 198, 170, .18), transparent 70%);
+      pointer-events: none
+    }
+
+    .hero-label {
+      display: inline-block;
+      font-size: 9px;
+      font-weight: 600;
+      letter-spacing: 3px;
+      text-transform: uppercase;
+      color: #8b7355;
+      background: rgba(180, 160, 130, .1);
+      border: 1px solid rgba(180, 160, 130, .18);
+      border-radius: 50px;
+      padding: 5px 20px;
+      margin-bottom: 20px
+    }
+
+    .hero h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(28px, 4.5vw, 46px);
+      font-weight: 700;
+      line-height: 1.18;
+      color: #2c2418;
+      margin-bottom: 16px
+    }
+
+    .hero h1 i {
+      font-style: italic;
+      color: #8b7355
+    }
+
+    .hero p {
+      font-size: 15px;
+      color: #8b7a65;
+      max-width: 500px;
+      margin: 0 auto;
+      line-height: 1.85
+    }
+
+    .overview {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 16px;
+      margin-bottom: 52px;
+      animation: fadeUp .6s .15s ease both
+    }
+
+    .ov-card {
+      text-align: center;
+      padding: 26px 14px;
+      transition: transform .3s ease, box-shadow .3s
+    }
+
+    .ov-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 30px rgba(60, 45, 25, .08)
+    }
+
+    .ov-card .icon {
+      font-size: 28px;
+      margin-bottom: 10px;
+      display: block;
+      animation: gentleFloat 3.5s ease-in-out infinite
+    }
+
+    .ov-card .label {
+      font-size: 9px;
+      text-transform: uppercase;
+      letter-spacing: 1.5px;
+      color: #a89880;
+      font-weight: 600;
+      margin-bottom: 5px
+    }
+
+    .ov-card .value {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #2c2418
+    }
+
+    .sec-head {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-bottom: 24px
+    }
+
+    .sec-head .line {
+      flex: 1;
+      height: 1px;
+      background: linear-gradient(90deg, rgba(180, 160, 130, .2), transparent)
+    }
+
+    .sec-head h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: 2.5px;
+      text-transform: uppercase;
+      color: #8b7355;
+      white-space: nowrap
+    }
+
+    .templates {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 18px;
+      margin-bottom: 56px
+    }
+
+    .tmpl {
+      padding: 30px;
+      position: relative;
+      overflow: hidden;
+      cursor: pointer;
+      transition: transform .3s ease, box-shadow .3s
+    }
+
+    .tmpl:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 40px rgba(60, 45, 25, .1)
+    }
+
+    .tmpl:nth-child(1) {
+      border-top: 3px solid rgba(120, 170, 130, .4)
+    }
+
+    .tmpl:nth-child(2) {
+      border-top: 3px solid rgba(130, 170, 200, .4)
+    }
+
+    .tmpl:nth-child(3) {
+      border-top: 3px solid rgba(200, 175, 120, .4)
+    }
+
+    .tmpl:nth-child(4) {
+      border-top: 3px solid rgba(200, 140, 160, .4)
+    }
+
+    .tmpl .emoji {
+      font-size: 36px;
+      margin-bottom: 14px;
+      display: block;
+      transition: transform .3s
+    }
+
+    .tmpl:hover .emoji {
+      transform: scale(1.08) rotate(-3deg)
+    }
+
+    .tmpl h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 18px;
+      font-weight: 600;
+      color: #2c2418;
+      margin-bottom: 6px
+    }
+
+    .tmpl p {
+      font-size: 13px;
+      color: #8b7a65;
+      line-height: 1.65;
+      margin-bottom: 12px
+    }
+
+    .tmpl .tag {
+      display: inline-block;
+      font-size: 9px;
+      padding: 4px 14px;
+      border-radius: 50px;
+      background: rgba(180, 160, 130, .08);
+      color: #8b7355;
+      letter-spacing: .5px;
+      border: 1px solid rgba(180, 160, 130, .12);
+      font-weight: 500
+    }
+
+    .timeline-section {
+      margin-bottom: 56px
+    }
+
+    .timeline {
+      position: relative;
+      padding-left: 48px
+    }
+
+    .timeline::before {
+      content: '';
+      position: absolute;
+      left: 18px;
+      top: 4px;
+      bottom: 4px;
+      width: 1.5px;
+      background: linear-gradient(180deg, #c9b99a, rgba(186, 214, 194, .5), rgba(200, 182, 155, .2))
+    }
+
+    .day {
+      position: relative;
+      margin-bottom: 28px
+    }
+
+    .day-dot {
+      position: absolute;
+      left: -38px;
+      top: 10px;
+      width: 11px;
+      height: 11px;
+      border-radius: 50%;
+      border: 2px solid #b4a082;
+      background: #faf8f4;
+      z-index: 2;
+      transition: all .3s ease
+    }
+
+    .day:hover .day-dot {
+      background: #8b7355;
+      border-color: #8b7355;
+      box-shadow: 0 0 0 5px rgba(139, 115, 85, .1);
+      transform: scale(1.25)
+    }
+
+    .day-card {
+      padding: 24px 26px;
+      transition: transform .25s ease, box-shadow .25s
+    }
+
+    .day-card:hover {
+      transform: translateX(5px);
+      box-shadow: 0 8px 28px rgba(60, 45, 25, .08)
+    }
+
+    .day-num {
+      font-family: 'Playfair Display', serif;
+      font-size: 10px;
+      font-weight: 700;
+      color: #8b7355;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 7px
+    }
+
+    .day-card h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 600;
+      color: #2c2418;
+      margin-bottom: 5px
+    }
+
+    .day-card p {
+      font-size: 13px;
+      color: #8b7a65;
+      line-height: 1.72
+    }
+
+    .day-tags {
+      display: flex;
+      gap: 6px;
+      margin-top: 10px;
+      flex-wrap: wrap
+    }
+
+    .day-tags span {
+      font-size: 9px;
+      padding: 4px 12px;
+      border-radius: 50px;
+      background: rgba(180, 160, 130, .06);
+      color: #8b7355;
+      border: 1px solid rgba(180, 160, 130, .1);
+      font-weight: 500
+    }
+
+    .dest-section {
+      margin-bottom: 56px
+    }
+
+    .dest-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 22px
+    }
+
+    .dest-col {
+      padding: 30px
+    }
+
+    .dest-col h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 16px;
+      font-weight: 600;
+      margin-bottom: 18px;
+      color: #2c2418;
+      display: flex;
+      align-items: center;
+      gap: 10px
+    }
+
+    .dest-list {
+      list-style: none
+    }
+
+    .dest-list li {
+      padding: 11px 16px;
+      margin-bottom: 8px;
+      border-radius: 12px;
+      background: rgba(250, 248, 244, .7);
+      border: 1px solid rgba(180, 160, 130, .08);
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      cursor: pointer;
+      transition: all .25s ease
+    }
+
+    .dest-list li:hover {
+      background: rgba(180, 160, 130, .1);
+      border-color: rgba(180, 160, 130, .2);
+      transform: translateX(4px);
+      box-shadow: 0 3px 12px rgba(60, 45, 25, .05)
+    }
+
+    .dest-list .flag {
+      font-size: 17px;
+      transition: transform .2s
+    }
+
+    .dest-list li:hover .flag {
+      transform: scale(1.12)
+    }
+
+    .dest-list .name {
+      flex: 1;
+      font-weight: 500;
+      color: #3a3028
+    }
+
+    .dest-list .arrow {
+      opacity: 0;
+      transition: opacity .2s;
+      font-size: 11px;
+      color: #8b7355
+    }
+
+    .dest-list li:hover .arrow {
+      opacity: 1
+    }
+
+    .dream {
+      text-align: center;
+      padding: 56px 40px;
+      border-radius: 22px;
+      position: relative;
+      overflow: hidden;
+      background: linear-gradient(145deg, rgba(186, 214, 194, .12), rgba(215, 198, 170, .1), rgba(230, 220, 210, .08));
+      border: 1px solid rgba(180, 160, 130, .12);
+      margin-bottom: 16px
+    }
+
+    .dream::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(ellipse at 50% 0%, rgba(215, 198, 170, .1), transparent 55%);
+      pointer-events: none
+    }
+
+    .dream h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(20px, 3vw, 28px);
+      font-weight: 700;
+      color: #2c2418;
+      margin-bottom: 12px;
+      line-height: 1.4
+    }
+
+    .dream h2 i {
+      font-style: italic;
+      color: #8b7355
+    }
+
+    .dream p {
+      font-size: 14px;
+      color: #8b7a65;
+      line-height: 1.9;
+      max-width: 440px;
+      margin: 0 auto
+    }
+
+    footer {
+      text-align: center;
+      padding: 32px 20px;
+      font-size: 10px;
+      color: #b4a082;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      border-top: 1px solid rgba(180, 160, 130, .1);
+      margin-top: 40px
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(22px);
+      transition: opacity .65s ease, transform .65s ease
+    }
+
+    .reveal.visible {
+      opacity: 1;
+      transform: translateY(0)
+    }
+
+    @media(max-width:900px) {
+      .templates {
+        grid-template-columns: 1fr 1fr
+      }
+
+      .overview {
+        grid-template-columns: repeat(2, 1fr)
+      }
+    }
+
+    @media(max-width:640px) {
+      nav {
+        flex-direction: column;
+        gap: 10px;
+        padding: 14px 18px
+      }
+
+      .nav-links {
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 8px
+      }
+
+      .content {
+        padding: 28px 16px 60px
+      }
+
+      .hero {
+        padding: 40px 24px 36px;
+        border-radius: 18px
+      }
+
+      .hero h1 {
+        font-size: 26px
+      }
+
+      .overview {
+        grid-template-columns: 1fr 1fr;
+        gap: 10px
+      }
+
+      .ov-card {
+        padding: 18px 10px
+      }
+
+      .templates {
+        grid-template-columns: 1fr;
+        gap: 14px
+      }
+
+      .dest-grid {
+        grid-template-columns: 1fr;
+        gap: 14px
+      }
+
+      .timeline {
+        padding-left: 38px
+      }
+
+      .timeline::before {
+        left: 14px
+      }
+
+      .day-dot {
+        left: -32px
+      }
+
+      .dream {
+        padding: 36px 20px
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <div class="page-wrap">
+    <div class="bg-orb orb1"></div>
+    <div class="bg-orb orb2"></div>
+    <div class="bg-orb orb3"></div>
+
+    <nav>
+      <div class="logo">Trip<em>zing</em></div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="itinerary.html" class="on">Itinerary</a>
+        <a href="weather.html">Weather</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+
+    <div class="content">
+
+      <div class="hero">
+        <div class="hero-label">✦ Your Travel Planner</div>
+        <h1>Craft Your Perfect <i>Itinerary</i></h1>
+        <p>A curated travel document outlining your journey — dates, transport, stays, and daily adventures all
+          beautifully planned.</p>
+      </div>
+
+      <div class="overview">
+        <div class="ov-card paper"><span class="icon">🌍</span>
+          <div class="label">Destinations</div>
+          <div class="value">10 Places</div>
+        </div>
+        <div class="ov-card paper"><span class="icon">📅</span>
+          <div class="label">Duration</div>
+          <div class="value">Flexible</div>
+        </div>
+        <div class="ov-card paper"><span class="icon">👥</span>
+          <div class="label">Travelers</div>
+          <div class="value">Solo / Group</div>
+        </div>
+        <div class="ov-card paper"><span class="icon">✈️</span>
+          <div class="label">Trip Types</div>
+          <div class="value">4 Templates</div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="sec-head">
+          <div class="line"></div>
+          <h2>Trip Templates</h2>
+          <div class="line"></div>
+        </div>
+        <div class="templates">
+          <div class="tmpl paper"><span class="emoji">🌄</span>
+            <h3>Adventure Trip</h3>
+            <p>Perfect for thrill lovers — trekking, biking & exploring the wild outdoors.</p><span class="tag">Leh
+              Ladakh • Manali</span>
+          </div>
+          <div class="tmpl paper"><span class="emoji">🏝️</span>
+            <h3>Relaxation Trip</h3>
+            <p>Unwind at pristine beaches & luxury resorts around the world.</p><span class="tag">Bali •
+              Lakshadweep</span>
+          </div>
+          <div class="tmpl paper"><span class="emoji">🏛️</span>
+            <h3>Cultural Trip</h3>
+            <p>Explore heritage sites, traditions & the art of timeless civilizations.</p><span class="tag">Jaipur •
+              Italy</span>
+          </div>
+          <div class="tmpl paper"><span class="emoji">💕</span>
+            <h3>Honeymoon</h3>
+            <p>Romantic getaways designed for couples seeking unforgettable moments.</p><span class="tag">Ooty •
+              Netherlands</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal timeline-section">
+        <div class="sec-head">
+          <div class="line"></div>
+          <h2>Sample Itinerary</h2>
+          <div class="line"></div>
+        </div>
+        <div class="timeline">
+          <div class="day">
+            <div class="day-dot"></div>
+            <div class="day-card paper">
+              <div class="day-num">Day 1 — Arrival</div>
+              <h4>Arrive & Settle In</h4>
+              <p>Check into your accommodation, explore the local area, and enjoy a welcome dinner.</p>
+              <div class="day-tags"><span>🏨 Hotel</span><span>🍽️ Dinner</span><span>🗺️ Explore</span>
+              </div>
+            </div>
+          </div>
+          <div class="day">
+            <div class="day-dot"></div>
+            <div class="day-card paper">
+              <div class="day-num">Day 2 — Adventure</div>
+              <h4>Local Sightseeing & Activities</h4>
+              <p>Visit iconic landmarks, try local cuisine, and participate in cultural activities.</p>
+              <div class="day-tags"><span>📸 Sightseeing</span><span>🍜 Local Food</span><span>🎭
+                  Culture</span></div>
+            </div>
+          </div>
+          <div class="day">
+            <div class="day-dot"></div>
+            <div class="day-card paper">
+              <div class="day-num">Day 3 — Excursion</div>
+              <h4>Day Trip & Nature Exploration</h4>
+              <p>Take a scenic day trip to nearby attractions, hike through nature trails.</p>
+              <div class="day-tags"><span>🏔️ Nature</span><span>🚐 Day Trip</span><span>📷 Photos</span>
+              </div>
+            </div>
+          </div>
+          <div class="day">
+            <div class="day-dot"></div>
+            <div class="day-card paper">
+              <div class="day-num">Day 4 — Leisure</div>
+              <h4>Free Day & Shopping</h4>
+              <p>Enjoy leisure time, shop for souvenirs, relax at a spa or café.</p>
+              <div class="day-tags"><span>🛍️ Shopping</span><span>☕ Café</span><span>💆 Spa</span></div>
+            </div>
+          </div>
+          <div class="day">
+            <div class="day-dot"></div>
+            <div class="day-card paper">
+              <div class="day-num">Day 5 — Departure</div>
+              <h4>Farewell & Return</h4>
+              <p>Check out, final photos, and depart with a heart full of memories.</p>
+              <div class="day-tags"><span>✈️ Travel</span><span>📸 Memories</span><span>👋 Farewell</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal dest-section">
+        <div class="sec-head">
+          <div class="line"></div>
+          <h2>Destinations</h2>
+          <div class="line"></div>
+        </div>
+        <div class="dest-grid">
+          <div class="dest-col paper">
+            <h3><span>🏠</span> Domestic</h3>
+            <ul class="dest-list">
+              <li><span class="flag">🇮🇳</span><span class="name">Jaipur — Pink City</span><span class="arrow">→</span>
+              </li>
+              <li data-page="leh"><span class="flag">🏔️</span><span class="name">Leh Ladakh —
+                  Mountains</span><span class="arrow">→</span></li>
+              <li><span class="flag">🌿</span><span class="name">Gangtok — Northeast Gem</span><span
+                  class="arrow">→</span></li>
+              <li><span class="flag">🌄</span><span class="name">Ooty — Hill Station</span><span class="arrow">→</span>
+              </li>
+              <li><span class="flag">🏝️</span><span class="name">Lakshadweep — Islands</span><span
+                  class="arrow">→</span></li>
+            </ul>
+          </div>
+          <div class="dest-col paper">
+            <h3><span>✈️</span> International</h3>
+            <ul class="dest-list">
+              <li><span class="flag">🇦🇪</span><span class="name">Dubai — City of Gold</span><span
+                  class="arrow">→</span></li>
+              <li><span class="flag">🇯🇵</span><span class="name">Japan — Land of Rising Sun</span><span
+                  class="arrow">→</span></li>
+              <li><span class="flag">🇮🇹</span><span class="name">Italy — Romance & Art</span><span
+                  class="arrow">→</span></li>
+              <li><span class="flag">🇮🇩</span><span class="name">Bali — Tropical Paradise</span><span
+                  class="arrow">→</span></li>
+              <li><span class="flag">🇳🇱</span><span class="name">Netherlands — Tulips &
+                  Canals</span><span class="arrow">→</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="reveal">
+        <div class="dream">
+          <h2>We'll Make Your <i>Dreams</i> Come True</h2>
+          <p>Let's get lost in the right direction and create endless memories that last a lifetime.</p>
+        </div>
+      </div>
+
+      <footer>© 2026 Tripzing — Crafted with ❤️ for Wanderers</footer>
+    </div>
+  </div>
+
+  <script>
+    const reveals = document.querySelectorAll('.reveal');
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); obs.unobserve(e.target) } });
+    }, { threshold: .12, rootMargin: '0px 0px -30px 0px' });
+    reveals.forEach(el => obs.observe(el));
+
+    document.querySelectorAll('.ov-card .icon').forEach((ic, i) => { ic.style.animationDelay = (i * .35) + 's' });
+
+    document.querySelectorAll('.tmpl').forEach(card => {
+      card.addEventListener('mousemove', e => {
+        const r = card.getBoundingClientRect(), x = (e.clientX - r.left) / r.width - .5, y = (e.clientY - r.top) / r.height - .5;
+        card.style.transform = `translateY(-5px) perspective(500px) rotateY(${x * 4}deg) rotateX(${-y * 4}deg)`;
+      });
+      card.addEventListener('mouseleave', () => { card.style.transform = '' });
+    });
+
+    const days = document.querySelectorAll('.day');
+    const tlObs = new IntersectionObserver(entries => {
+      entries.forEach((e, i) => {
+        if (e.isIntersecting) {
+          const dot = e.target.querySelector('.day-dot'), card = e.target.querySelector('.day-card');
+          setTimeout(() => {
+            dot.style.background = '#8b7355'; dot.style.borderColor = '#8b7355';
+            dot.style.boxShadow = '0 0 0 5px rgba(139,115,85,.12)';
+            card.style.opacity = '1'; card.style.transform = 'translateX(0)';
+          }, i * 100);
+          tlObs.unobserve(e.target);
+        }
+      });
+    }, { threshold: .25 });
+    days.forEach((d, i) => {
+      const c = d.querySelector('.day-card');
+      c.style.opacity = '0'; c.style.transform = 'translateX(-16px)';
+      c.style.transition = `opacity .45s ease ${i * .08}s, transform .45s ease ${i * .08}s, box-shadow .25s`;
+      tlObs.observe(d);
+    });
+
+    document.querySelectorAll('.dest-list li').forEach(li => {
+      li.addEventListener('click', () => {
+        li.style.background = 'rgba(139,115,85,.15)';
+        setTimeout(() => {
+          li.style.background = '';
+          const pageAttr = li.getAttribute('data-page');
+          const n = pageAttr || li.querySelector('.name').textContent.split('—')[0].trim().toLowerCase().replace(/\s+/g, '');
+          window.location.href = n + '.html';
+        }, 180);
+      });
+    });
+
+    const dream = document.querySelector('.dream');
+    if (dream) {
+      dream.addEventListener('mousemove', e => {
+        const r = dream.getBoundingClientRect();
+        dream.style.background = `radial-gradient(circle 180px at ${e.clientX - r.left}px ${e.clientY - r.top}px,rgba(186,214,194,.12),transparent 65%),linear-gradient(145deg,rgba(186,214,194,.12),rgba(215,198,170,.1),rgba(230,220,210,.08))`;
+      });
+      dream.addEventListener('mouseleave', () => { dream.style.background = '' });
+    }
+
+    document.querySelectorAll('.nav-links a').forEach(a => {
+      a.addEventListener('mouseenter', () => { a.style.transform = 'translateY(-1px)'; a.style.transition = 'all .2s' });
+      a.addEventListener('mouseleave', () => { a.style.transform = '' });
+    });
+  </script>
+</body>
+
+</html>

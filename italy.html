@@ -1,0 +1,1128 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Italy - Luxury Travel Itinerary</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Montserrat:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-color: #FDFBF7;
+            --text-main: #2C2C2C;
+            --text-muted: #5A5A5A;
+            --wine-red: #722F37;
+            --olive-green: #656d4a;
+            --gold: #C5A059;
+            --glass-bg: rgba(253, 251, 247, 0.85);
+            --glass-border: rgba(197, 160, 89, 0.3);
+
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Montserrat', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-color);
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: 0.5s ease;
+            background: transparent;
+        }
+
+        nav.scrolled {
+            padding: 15px 50px;
+            background: var(--glass-bg);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: 0.5s;
+        }
+
+        nav.scrolled .logo {
+            color: var(--wine-red);
+        }
+
+        .logo span {
+            color: var(--gold);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 5px;
+            transition: 0.5s;
+        }
+
+        nav.scrolled .nav-links a {
+            color: var(--text-main);
+            font-weight: 500;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 1px;
+            background: var(--gold);
+            transition: 0.3s;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/Sunset_trough_the_arches_of_the_Colosseum\,_Rome.jpg') center/cover;
+            animation: slowZoom 20s infinite alternate linear;
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(114, 47, 55, 0.4), rgba(44, 44, 44, 0.7) 80%, var(--bg-color));
+            z-index: -1;
+        }
+
+        .hero-content {
+            z-index: 1;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeUp 2s ease forwards 0.5s;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: 8rem;
+            font-weight: 600;
+            letter-spacing: 15px;
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 0 10px 40px rgba(0, 0, 0, 0.6);
+            font-style: italic;
+        }
+
+        .hero p {
+            font-size: 1.4rem;
+            font-weight: 300;
+            letter-spacing: 4px;
+            color: var(--gold);
+            text-transform: uppercase;
+            text-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+            font-family: var(--font-body);
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            animation: float 2s infinite ease-in-out;
+            font-size: 0.8rem;
+            letter-spacing: 3px;
+            font-family: var(--font-body);
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--gold), transparent);
+        }
+
+        .section {
+            padding: 100px 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 70px;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--wine-red);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--text-muted);
+            font-weight: 300;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .info-panel {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 12px;
+            padding: 25px;
+            width: 260px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: 0.4s;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            background: #fff;
+            box-shadow: 0 15px 40px rgba(197, 160, 89, 0.2);
+            border-color: var(--gold);
+        }
+
+        .info-icon {
+            font-size: 2rem;
+            color: var(--olive-green);
+        }
+
+        .info-text h4 {
+            font-family: var(--font-heading);
+            font-size: 1rem;
+            color: var(--wine-red);
+            margin-bottom: 5px;
+        }
+
+        .info-text p {
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            font-weight: 500;
+        }
+
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 300px;
+            gap: 20px;
+        }
+
+        .place-card {
+            position: relative;
+            border-radius: 15px;
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .place-rome {
+            grid-column: 1 / 8;
+            grid-row: 1 / 3;
+        }
+
+        .place-venice {
+            grid-column: 8 / 13;
+            grid-row: 1 / 2;
+        }
+
+        .place-florence {
+            grid-column: 8 / 13;
+            grid-row: 2 / 3;
+        }
+
+        .place-milan {
+            grid-column: 1 / 6;
+            grid-row: 3 / 4;
+        }
+
+        .place-amalfi {
+            grid-column: 6 / 13;
+            grid-row: 3 / 4;
+        }
+
+        .place-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .place-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(44, 44, 44, 0.9) 0%, transparent 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            transition: 0.4s;
+        }
+
+        .place-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .place-card:hover .place-overlay {
+            background: linear-gradient(to top, rgba(114, 47, 55, 0.8) 0%, transparent 70%);
+        }
+
+        .place-title {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            color: white;
+            transition: 0.4s;
+        }
+
+        .place-desc {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            color: #f0f0f0;
+            font-size: 1rem;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        .place-card:hover .place-desc {
+            max-height: 100px;
+        }
+
+        .place-card:hover .place-title {
+            transform: translateY(-5px);
+            color: var(--gold);
+        }
+
+        .cuisine-section {
+            background-color: #fff;
+            padding: 100px 0;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .food-container {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 20px 50px;
+            scrollbar-width: none;
+            scroll-snap-type: x mandatory;
+        }
+
+        .food-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .food-card {
+            min-width: 320px;
+            height: 420px;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            scroll-snap-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.1);
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.8s;
+        }
+
+        .food-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .food-overlay {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            padding: 30px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+        }
+
+        .food-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            color: white;
+            margin-bottom: 5px;
+        }
+
+        .food-card p {
+            font-size: 1rem;
+            color: var(--gold);
+            font-weight: 500;
+            font-style: italic;
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .culture-card {
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            transition: 0.4s;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .culture-card img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            transition: 0.4s;
+        }
+
+        .culture-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(114, 47, 55, 0.15);
+            border-color: var(--glass-border);
+        }
+
+        .culture-card:hover img {
+            filter: brightness(1.1);
+        }
+
+        .culture-card h4 {
+            font-family: var(--font-heading);
+            font-size: 1.3rem;
+            color: var(--wine-red);
+            margin-bottom: 10px;
+        }
+
+        .culture-card p {
+            font-size: 0.9rem;
+            color: var(--text-muted);
+            line-height: 1.5;
+        }
+
+        .timeline {
+            max-width: 950px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: #fff;
+            border: 1px solid rgba(0, 0, 0, 0.05);
+            border-radius: 12px;
+            margin-bottom: 20px;
+            overflow: hidden;
+            transition: 0.4s;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.03);
+        }
+
+        .timeline-item:hover {
+            border-color: var(--gold);
+            box-shadow: 0 8px 25px rgba(197, 160, 89, 0.15);
+        }
+
+        .timeline-header {
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: #fff;
+        }
+
+        .day-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .day-badge {
+            background: rgba(197, 160, 89, 0.15);
+            color: var(--wine-red);
+            padding: 8px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.95rem;
+            border: 1px solid var(--glass-border);
+            font-family: var(--font-body);
+        }
+
+        .day-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: var(--text-main);
+        }
+
+        .timeline-icon {
+            transition: 0.4s;
+            color: var(--gold);
+            font-size: 1.2rem;
+        }
+
+        .timeline-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.5s ease;
+            background: var(--bg-color);
+        }
+
+        .timeline-body {
+            padding: 0 30px 30px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        .timeline-details {
+            display: flex;
+            gap: 20px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            padding-top: 20px;
+            border-top: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .timeline-details span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 500;
+        }
+
+        .timeline-details i {
+            color: var(--wine-red);
+        }
+
+        .timeline-body ul {
+            list-style: none;
+            margin-top: 10px;
+        }
+
+        .timeline-body li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            color: var(--text-main);
+            font-size: 1.05rem;
+        }
+
+        .timeline-body li i {
+            color: var(--olive-green);
+            margin-top: 4px;
+            font-size: 0.9rem;
+        }
+
+        .timeline-item.active .timeline-content {
+            max-height: 500px;
+        }
+
+        .timeline-item.active .timeline-icon {
+            transform: rotate(180deg);
+            color: var(--wine-red);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+            background: url('images/Panorama_of_Canal_Grande_and_Ponte_di_Rialto\,_Venice_-_September_2017.jpg') center/cover fixed;
+        }
+
+        .cta-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(44, 44, 44, 0.85);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-heading);
+            font-size: 3.5rem;
+            color: white;
+            margin-bottom: 20px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 50px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            font-weight: 500;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--gold), #d4af37);
+            color: white;
+            border: none;
+            box-shadow: 0 10px 30px rgba(197, 160, 89, 0.4);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(197, 160, 89, 0.6);
+        }
+
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.5);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.1);
+            border-color: white;
+            transform: translateY(-5px);
+        }
+
+        footer {
+            padding: 50px 20px;
+            text-align: center;
+            background: #2c2c2c;
+            color: #aaa;
+            font-size: 0.95rem;
+            font-family: var(--font-body);
+            letter-spacing: 1px;
+        }
+
+        footer span {
+            color: var(--gold);
+            font-family: var(--font-heading);
+            font-size: 1.2rem;
+        }
+
+        @keyframes slowZoom {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.15);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(-50%);
+            }
+
+            50% {
+                transform: translateY(10px) translateX(-50%);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media(max-width: 992px) {
+            .hero h1 {
+                font-size: 5rem;
+                letter-spacing: 10px;
+            }
+
+            .places-grid {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .place-card {
+                height: 300px;
+            }
+        }
+
+        @media(max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 3.8rem;
+                letter-spacing: 5px;
+            }
+
+            .hero p {
+                font-size: 1.1rem;
+            }
+
+            .info-panel {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info-card {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .timeline-icon {
+                position: absolute;
+                right: 30px;
+                top: 30px;
+            }
+
+            .timeline-details {
+                flex-direction: column;
+                gap: 10px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <a href="#" class="logo">Trip<span>zing</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#destinations">Destinations</a></li>
+            <li><a href="#cuisine">Cuisine</a></li>
+            <li><a href="#experiences">Experiences</a></li>
+            <li><a href="itinerary.html">Itinerary</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>Italy</h1>
+            <p>Where Every Street Tells a Story</p>
+        </div>
+        <a href="#explore" class="scroll-down">
+            DISCOVER
+            <div class="scroll-line"></div>
+        </a>
+    </header>
+
+    <div class="info-panel" id="explore">
+        <div class="info-card reveal">
+            <i class="fa-regular fa-calendar-check info-icon"></i>
+            <div class="info-text">
+                <h4>Best Time</h4>
+                <p>April - June, Sept - Oct</p>
+            </div>
+        </div>
+        <div class="info-card reveal" style="transition-delay: 0.1s">
+            <i class="fa-solid fa-euro-sign info-icon"></i>
+            <div class="info-text">
+                <h4>Currency</h4>
+                <p>Euro (€)</p>
+            </div>
+        </div>
+        <div class="info-card reveal" style="transition-delay: 0.2s">
+            <i class="fa-solid fa-language info-icon"></i>
+            <div class="info-text">
+                <h4>Language</h4>
+                <p>Italian</p>
+            </div>
+        </div>
+        <div class="info-card reveal" style="transition-delay: 0.3s">
+            <i class="fa-solid fa-suitcase-rolling info-icon"></i>
+            <div class="info-text">
+                <h4>Travel Tip</h4>
+                <p>Book tickets in advance</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="destinations" class="section">
+        <div class="section-header reveal">
+            <p>Iconic Destinations</p>
+            <h2>The Heart of Italy</h2>
+        </div>
+        <div class="places-grid">
+            <div class="place-card place-rome reveal">
+                <img src="images/colssm.jpg" loading="lazy" alt="Rome Colosseum">
+                <div class="place-overlay">
+                    <h3 class="place-title">Rome</h3>
+                    <p class="place-desc">The Eternal City, home to the Colosseum, the Roman Forum, and ancient history.
+                    </p>
+                </div>
+            </div>
+            <div class="place-card place-venice reveal" style="transition-delay: 0.1s">
+                <img src="images/rialto.jpg"
+                    loading="lazy" alt="Venice Grand Canal">
+                <div class="place-overlay">
+                    <h3 class="place-title">Venice</h3>
+                    <p class="place-desc">A romantic floating masterpiece with meandering canals and gondolas.</p>
+                </div>
+            </div>
+            <div class="place-card place-florence reveal" style="transition-delay: 0.2s">
+                <img src="images/duomo.jpg" loading="lazy" alt="Florence Duomo">
+                <div class="place-overlay">
+                    <h3 class="place-title">Florence</h3>
+                    <p class="place-desc">The birthplace of the Renaissance, filled with world-class art and
+                        architecture.</p>
+                </div>
+            </div>
+            <div class="place-card place-milan reveal" style="transition-delay: 0.1s">
+                <img src="images/milan.jpg" loading="lazy" alt="Milan Cathedral">
+                <div class="place-overlay">
+                    <h3 class="place-title">Milan</h3>
+                    <p class="place-desc">The global capital of fashion, luxury shopping, and the spectacular Duomo.</p>
+                </div>
+            </div>
+            <div class="place-card place-amalfi reveal" style="transition-delay: 0.2s">
+                <img src="images/amalfi.jpg" loading="lazy" alt="Amalfi Coast Positano">
+                <div class="place-overlay">
+                    <h3 class="place-title">Amalfi Coast</h3>
+                    <p class="place-desc">Stunning coastal cliffs dotted with pastel-colored villages and lemon groves.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div id="cuisine" class="cuisine-section">
+        <div class="section-header reveal">
+            <p>La Dolce Vita</p>
+            <h2>Culinary Masterpieces</h2>
+        </div>
+        <div class="food-container reveal">
+            <div class="food-card">
+                <img src="images/pizza.jpg" loading="lazy" alt="Neapolitan Pizza">
+                <div class="food-overlay">
+                    <h3>Pizza Napoletana</h3>
+                    <p>Authentic, wood-fired perfection.</p>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="images/pasta.jpg" loading="lazy" alt="Pasta">
+                <div class="food-overlay">
+                    <h3>Fresh Pasta</h3>
+                    <p>Handcrafted daily.</p>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="images/risoto.jpg" loading="lazy" alt="Risotto">
+                <div class="food-overlay">
+                    <h3>Risotto</h3>
+                    <p>Creamy elegance.</p>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="images/gelato.jpg" loading="lazy" alt="Gelato">
+                <div class="food-overlay">
+                    <h3>Artisan Gelato</h3>
+                    <p>Rich and refreshing.</p>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="images/espres.jpg" loading="lazy" alt="Espresso">
+                <div class="food-overlay">
+                    <h3>Espresso</h3>
+                    <p>The authentic morning ritual.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="experiences" class="section">
+        <div class="section-header reveal">
+            <p>Immerse Yourself</p>
+            <h2>Unforgettable Experiences</h2>
+        </div>
+        <div class="culture-grid">
+            <div class="culture-card reveal">
+                <img src="images/gondla.jpg" loading="lazy"
+                    alt="Gondola Ride">
+                <h4>Gondola Rides</h4>
+                <p>Float through the enchanting canals of Venice at sunset.</p>
+            </div>
+            <div class="culture-card reveal" style="transition-delay: 0.1s">
+                <img src="images/ruins.jpg" loading="lazy"
+                    alt="Roman Ruins">
+                <h4>Roman History</h4>
+                <p>Step back in time as you walk through the ancient Roman Forum.</p>
+            </div>
+            <div class="culture-card reveal" style="transition-delay: 0.2s">
+                <img src="images/uffizi.jpg" loading="lazy"
+                    alt="Uffizi Gallery">
+                <h4>Art Museums</h4>
+                <p>Witness Renaissance masterpieces at the Uffizi Gallery.</p>
+            </div>
+            <div class="culture-card reveal" style="transition-delay: 0.3s">
+                <img src="images/tuscan.jpg" loading="lazy"
+                    alt="Wine Tasting">
+                <h4>Wine Tasting</h4>
+                <p>Sip world-class wines overlooking the rolling hills of Tuscany.</p>
+            </div>
+            <div class="culture-card reveal" style="transition-delay: 0.4s">
+                <img src="images/rcafe.jpg" loading="lazy" alt="Street Cafes">
+                <h4>Street Cafes</h4>
+                <p>Enjoy la dolce vita with espresso at a lively piazza.</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="itinerary" class="section">
+        <div class="section-header reveal">
+            <p>10 Days of Exploration</p>
+            <h2>The Grand Tour</h2>
+        </div>
+        <div class="timeline">
+
+            <div class="timeline-item reveal">
+                <div class="timeline-header" onclick="toggleTimeline(this)">
+                    <div class="day-info">
+                        <span class="day-badge">Days 1-3</span>
+                        <h3 class="day-title">The Eternal City: Rome</h3>
+                    </div>
+                    <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-body">
+                        <div class="timeline-details">
+                            <span><i class="fa-solid fa-hotel"></i> Hotel Artemide</span>
+                            <span><i class="fa-solid fa-utensils"></i> Roscioli Restaurant / Da Enzo al 29</span>
+                        </div>
+                        <ul>
+                            <li><i class="fa-regular fa-circle-check"></i> Day 1: Arrival & check-in, Evening walk near
+                                Trevi Fountain, Relaxed dinner.</li>
+                            <li><i class="fa-regular fa-circle-check"></i> Day 2: Ancient Rome - Explore the Colosseum,
+                                Roman Forum, and Palatine Hill.</li>
+                            <li><i class="fa-regular fa-circle-check"></i> Day 3: Vatican City - St. Peter’s Basilica,
+                                Vatican Museums, and the Sistine Chapel.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-header" onclick="toggleTimeline(this)">
+                    <div class="day-info">
+                        <span class="day-badge">Days 4-6</span>
+                        <h3 class="day-title">Renaissance Heart: Florence & Tuscany</h3>
+                    </div>
+                    <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-body">
+                        <div class="timeline-details">
+                            <span><i class="fa-solid fa-hotel"></i> Hotel Spadai</span>
+                            <span><i class="fa-solid fa-utensils"></i> Trattoria ZaZa / Osteria Vini e Vecchi
+                                Sapori</span>
+                        </div>
+                        <ul>
+                            <li><i class="fa-regular fa-circle-check"></i> Day 4: Train to Florence, Explore Piazza del
+                                Duomo, Evening gelato.</li>
+                            <li><i class="fa-regular fa-circle-check"></i> Day 5: Florence Art & Culture - Uffizi
+                                Gallery, Florence Cathedral, Ponte Vecchio.</li>
+                            <li><i class="fa-regular fa-circle-check"></i> Day 6: Tuscany Day Trip - Pisa Leaning Tower,
+                                Tuscany countryside, Wine tasting.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-header" onclick="toggleTimeline(this)">
+                    <div class="day-info">
+                        <span class="day-badge">Days 7-10</span>
+                        <h3 class="day-title">The Floating City: Venice</h3>
+                    </div>
+                    <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-body">
+                        <div class="timeline-details">
+                            <span><i class="fa-solid fa-hotel"></i> Hotel Antiche Figure</span>
+                            <span><i class="fa-solid fa-utensils"></i> Trattoria Al Gazzettino / Dal Moro’s Fresh
+                                Pasta</span>
+                        </div>
+                        <ul>
+                            <li><i class="fa-regular fa-circle-check"></i> Day 7: Train to Venice, Scenic Gondola ride,
+                                Evening canals walk.</li>
+                            <li><i class="fa-regular fa-circle-check"></i> Day 8: Venice Exploration - St. Mark’s
+                                Basilica, Doge’s Palace, Rialto Bridge.</li>
+                            <li><i class="fa-regular fa-circle-check"></i> Day 9: Murano & Burano - Visit glass
+                                factories (Murano) and colorful houses (Burano).</li>
+                            <li><i class="fa-regular fa-circle-check"></i> Day 10: Souvenir shopping, Departure from
+                                Venice ✈️.</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-overlay"></div>
+        <div class="cta-content reveal">
+            <h2>Ready to experience the magic of Italy?</h2>
+            <div class="btn-group">
+                <a href="#" class="btn btn-primary">Plan Your Trip</a>
+                <a href="#destinations" class="btn btn-outline">Explore More</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Crafted with elegance for <span>Tripzing</span>. Enjoy your journey to Italy.</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        function toggleTimeline(element) {
+            const item = element.parentElement;
+            document.querySelectorAll('.timeline-item').forEach(i => {
+                if (i !== item) i.classList.remove('active');
+            });
+            item.classList.toggle('active');
+        }
+        document.querySelector('.timeline-item').classList.add('active');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

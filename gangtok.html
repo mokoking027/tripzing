@@ -1,0 +1,715 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Gangtok Escape — Above the Clouds</title>
+  <meta name="description" content="A premium travel experience through the misty mountains of Gangtok, Sikkim.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"
+    crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+  <style>
+    :root {
+      --bg-emerald: #0f3d2e;
+      --bg-mist: #1a2a24;
+      --accent-gold: #cfae70;
+      --text-mist: #dfe6e9;
+      --text-white: #f5f7fa;
+      --glass: rgba(255, 255, 255, 0.08);
+      --glass-border: rgba(255, 255, 255, 0.15);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-emerald);
+      color: var(--text-mist);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: #051a14;
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-gold);
+      border-radius: 10px;
+    }
+
+    .glass {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 18px;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 25px 60px;
+      transition: all 0.4s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(15, 61, 46, 0.9);
+      backdrop-filter: blur(15px);
+      padding: 15px 60px;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+      letter-spacing: 1px;
+    }
+
+    .logo em {
+      color: var(--accent-gold);
+      font-style: italic;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 40px;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.6);
+      font-size: 13px;
+      text-decoration: none;
+      letter-spacing: 2px;
+      font-weight: 500;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.on {
+      color: #fff;
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('images/ghero.jpg');
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+      transform: scale(1.1);
+      animation: slowZoom 20s infinite alternate linear;
+    }
+
+    .hero-bg.fallback {
+      background: linear-gradient(rgba(15, 61, 46, 0.55), rgba(15, 61, 46, 0.85)),
+        url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop');
+      background-size: cover;
+      background-position: center;
+    }
+
+    @keyframes slowZoom {
+      from {
+        transform: scale(1);
+      }
+
+      to {
+        transform: scale(1.1);
+      }
+    }
+
+    .hero-content {
+      z-index: 10;
+      padding: 0 20px;
+    }
+
+    .hero-content span {
+      display: block;
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 8px;
+      color: var(--accent-gold);
+      margin-bottom: 20px;
+      font-weight: 600;
+    }
+
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(50px, 9vw, 100px);
+      font-weight: 700;
+      line-height: 1;
+      color: #fff;
+      margin-bottom: 20px;
+      text-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+    }
+
+    .hero-content p {
+      font-size: 18px;
+      color: var(--text-mist);
+      max-width: 600px;
+      margin: 0 auto;
+      font-weight: 300;
+      letter-spacing: 1px;
+    }
+
+    section {
+      padding: 120px 60px;
+      max-width: 1300px;
+      margin: 0 auto;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 80px;
+    }
+
+    .section-title h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    .section-title p {
+      color: var(--accent-gold);
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+    }
+
+    .itinerary-grid {
+      display: grid;
+      gap: 40px;
+    }
+
+    .day-card {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+      padding: 50px;
+      align-items: center;
+      transition: all 0.5s ease;
+    }
+
+    .day-card:hover {
+      background: rgba(255, 255, 255, 0.12);
+      transform: translateY(-10px);
+      box-shadow: 0 20px 50px rgba(0, 0, 0, 0.4);
+    }
+
+    .day-image {
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      aspect-ratio: 4/3;
+    }
+
+    .day-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.6s ease;
+    }
+
+    .day-card:hover .day-image img {
+      transform: scale(1.08);
+    }
+
+    .day-info h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      color: var(--accent-gold);
+      margin-bottom: 10px;
+    }
+
+    .day-info h4 {
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .day-info ul {
+      list-style: none;
+    }
+
+    .day-info li {
+      margin-bottom: 15px;
+      padding-left: 30px;
+      position: relative;
+      color: var(--text-mist);
+      font-size: 15px;
+    }
+
+    .day-info li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--accent-gold);
+    }
+
+    .attr-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .attr-card {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 3/4;
+    }
+
+    .attr-card img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: 0.8s ease;
+    }
+
+    .attr-card:hover img {
+      transform: scale(1.1);
+    }
+
+    .attr-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(15, 61, 46, 0.95), transparent 70%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+      opacity: 0.9;
+    }
+
+    .attr-overlay h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      color: #fff;
+      margin-bottom: 10px;
+    }
+
+    .attr-overlay p {
+      font-size: 13px;
+      color: var(--text-mist);
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+
+    .tip-card {
+      padding: 50px 30px;
+      text-align: center;
+      transition: 0.3s;
+    }
+
+    .tip-card:hover {
+      border-color: var(--accent-gold);
+    }
+
+    .tip-card i {
+      font-size: 40px;
+      color: var(--accent-gold);
+      margin-bottom: 25px;
+      display: block;
+    }
+
+    .tip-card h4 {
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: #fff;
+      margin-bottom: 15px;
+    }
+
+    .tip-card p {
+      font-size: 14px;
+      color: var(--text-mist);
+    }
+
+    .tip-card .tip-img {
+      width: 100%;
+      height: 120px;
+      object-fit: cover;
+      border-radius: 10px;
+      margin-bottom: 15px;
+    }
+
+    footer {
+      padding: 100px 60px 60px;
+      text-align: center;
+      background: #051a14;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .footer-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 32px;
+      font-style: italic;
+      color: var(--text-mist);
+      margin-bottom: 40px;
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 4px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(40px);
+      transition: 1s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1024px) {
+      .day-card {
+        grid-template-columns: 1fr;
+      }
+
+      .attr-grid,
+      .tips-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      nav {
+        padding: 20px 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .hero-content h1 {
+        font-size: 50px;
+      }
+
+      .attr-grid,
+      .tips-grid {
+        grid-template-columns: 1fr;
+      }
+
+      section {
+        padding: 80px 20px;
+      }
+
+      .day-card {
+        padding: 30px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="logo">TRIP<em>ZING</em></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="itinerary.html">Itinerary</a>
+      <a href="gangtok.html" class="on">Gangtok</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-bg" id="heroBg"></div>
+    <div class="hero-content">
+      <span>Misty Himalayan Trails</span>
+      <h1>Gangtok Escape</h1>
+      <p>Where Clouds Meet the Mountains — Explore the soulful monasteries, azure lakes, and vibrant culture of Sikkim.
+      </p>
+    </div>
+  </header>
+
+  <section id="itinerary">
+    <div class="section-title reveal">
+      <h2>The Experience</h2>
+      <p>5 NIGHTS & 6 DAYS OF HIMALAYAN SPLENDOR</p>
+    </div>
+
+    <div class="itinerary-grid">
+
+      <div class="day-card glass reveal">
+        <div class="day-image">
+          <img src="images/gcity.jpg"
+            data-fallback="https://images.unsplash.com/photo-1570731238142-b2da806e7241?q=80&w=2070&auto=format&fit=crop"
+            alt="MG Marg Gangtok" loading="lazy">
+        </div>
+        <div class="day-info">
+          <h3>Day 01</h3>
+          <h4>Arrival & City Vibes</h4>
+          <ul>
+            <li>Arrival at Bagdogra (IXB) and transfer to the misty hills of Gangtok.</li>
+            <li>Check-in at a premium boutique hotel with mountain views.</li>
+            <li>Evening stroll at MG Marg — the cleanest and most vibrant street in India.</li>
+            <li>Local dinner featuring authentic Sikkimese delicacies.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="day-card glass reveal">
+        <div class="day-image">
+          <img src="images/glake.jpg"
+            data-fallback="https://images.unsplash.com/photo-1469474968028-56623f02e42e?q=80&w=2070&auto=format&fit=crop"
+            alt="Tsomgo Lake" loading="lazy">
+        </div>
+        <div class="day-info">
+          <h3>Day 02</h3>
+          <h4>High Altitude Wonders</h4>
+          <ul>
+            <li>Drive to the sacred Tsomgo Lake situated at 12,400 ft.</li>
+            <li>Visit the Baba Harbhajan Singh Memorial Mandir.</li>
+            <li>Optional visit to the historic Nathula Pass (Indo-China Border).</li>
+            <li>Evening at leisure to explore local cafes.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="day-card glass reveal">
+        <div class="day-image">
+          <img src="images/gmount.jpg"
+            data-fallback="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=2070&auto=format&fit=crop"
+            alt="North Sikkim Mountains" loading="lazy">
+        </div>
+        <div class="day-info">
+          <h3>Day 03 & 04</h3>
+          <h4>Journey to the North</h4>
+          <ul>
+            <li>Transfer to Lachen — the gateway to North Sikkim.</li>
+            <li>Early morning visit to Gurudongmar Lake (17,800 ft), one of the highest lakes in the world.</li>
+            <li>Drive to Lachung through scenic waterfalls and apple orchards.</li>
+            <li>Overnight in cozy mountain lodges.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="day-card glass reveal">
+        <div class="day-image">
+          <img src="images/gvally.jpg"
+            data-fallback="https://images.unsplash.com/photo-1501854140801-50d01698950b?q=80&w=2070&auto=format&fit=crop"
+            alt="Yumthang Valley" loading="lazy">
+        </div>
+        <div class="day-info">
+          <h3>Day 05</h3>
+          <h4>Valley of Flowers</h4>
+          <ul>
+            <li>Explore the breathtaking Yumthang Valley (The Valley of Flowers).</li>
+            <li>Visit the hot springs known for their medicinal properties.</li>
+            <li>Option to visit Zero Point for snow activities.</li>
+            <li>Evening return to Gangtok.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="day-card glass reveal">
+        <div class="day-image">
+          <img src="images/gmonst.jpg"
+            data-fallback="https://images.unsplash.com/photo-1605640840605-14ac1855827b?q=80&w=2070&auto=format&fit=crop"
+            alt="Rumtek Monastery" loading="lazy">
+        </div>
+        <div class="day-info">
+          <h3>Day 06</h3>
+          <h4>Sacred Spirits & Farewell</h4>
+          <ul>
+            <li>Visit the Rumtek Monastery — the largest in Sikkim.</li>
+            <li>Explore the Do Drul Chorten Stupa and Namgyal Institute of Tibetology.</li>
+            <li>Final souvenir shopping at the local market.</li>
+            <li>Departure for Bagdogra with memories for a lifetime.</li>
+          </ul>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="attractions">
+    <div class="section-title reveal">
+      <h2>Top Attractions</h2>
+      <p>MUST VISIT SPOTS IN SIKKIM</p>
+    </div>
+    <div class="attr-grid">
+
+      <div class="attr-card reveal">
+        <img src="images/gwater.jpg"
+          data-fallback="https://images.unsplash.com/photo-1544198365-f5d60b6d8190?q=80&w=2070&auto=format&fit=crop"
+          alt="Banjhakri Falls" loading="lazy">
+        <div class="attr-overlay">
+          <h4>Banjhakri Falls</h4>
+          <p>A serene waterfall surrounded by lush green shamanic park.</p>
+        </div>
+      </div>
+
+      <div class="attr-card reveal" style="transition-delay: 0.2s;">
+        <img src="images/gtmple.jpg"
+          data-fallback="https://images.unsplash.com/photo-1568454537842-d933259bb258?q=80&w=2070&auto=format&fit=crop"
+          alt="Hanuman Tok" loading="lazy">
+        <div class="attr-overlay">
+          <h4>Hanuman Tok</h4>
+          <p>A sacred temple offering panoramic views of Kanchenjunga.</p>
+        </div>
+      </div>
+
+      <div class="attr-card reveal" style="transition-delay: 0.4s;">
+        <img src="images/gsunrs.jpg"
+          data-fallback="https://images.unsplash.com/photo-1600348712270-c62fd40f5f74?q=80&w=2070&auto=format&fit=crop"
+          alt="Tashi View Point" loading="lazy">
+        <div class="attr-overlay">
+          <h4>Tashi View Point</h4>
+          <p>Perfect spot for witnessing the golden Himalayan sunrise.</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="culture">
+    <div class="section-title reveal">
+      <h2>Local Flavors</h2>
+      <p>GASTRONOMY OF THE HIMALAYAS</p>
+    </div>
+
+    <div class="day-card glass reveal">
+      <div class="day-image">
+        <img src="images/gfood.jpg"
+          data-fallback="https://images.unsplash.com/photo-1534422298391-e4f8c170db76?q=80&w=2070&auto=format&fit=crop"
+          alt="Sikkim Momos" loading="lazy">
+      </div>
+      <div class="day-info">
+        <h3>Taste of Sikkim</h3>
+        <h4>Momos, Thukpa & More</h4>
+        <ul>
+          <li>Handcrafted Momos served with spicy red chili chutney.</li>
+          <li>Warm Thukpa (Noodle Soup) to battle the mountain chill.</li>
+          <li>Local Chhurpi (Yak Cheese) and organic tea from Temi Garden.</li>
+          <li>Experience the hospitality of a traditional Sikkimese homestay.</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="tips">
+    <div class="section-title reveal">
+      <h2>Mountain Wisdom</h2>
+      <p>ESSENTIALS FOR YOUR JOURNEY</p>
+    </div>
+    <div class="tips-grid">
+
+      <div class="tip-card glass reveal">
+        <i class="fa-solid fa-id-card"></i>
+        <h4>Permits</h4>
+        <p>Sikkim requires Inner Line Permits for certain areas. Keep 10 passport photos and ID copies ready.</p>
+      </div>
+
+      <div class="tip-card glass reveal" style="transition-delay: 0.2s;">
+        <i class="fa-solid fa-temperature-arrow-down"></i>
+        <h4>Altitude</h4>
+        <p>North Sikkim is high altitude. Consult a doctor for AMS medication and stay hydrated.</p>
+      </div>
+
+      <div class="tip-card glass reveal" style="transition-delay: 0.4s;">
+        <img src="images/groad.jpg"
+          data-fallback="https://images.unsplash.com/photo-1464822759023-fed622ff2c3b?q=80&w=600&auto=format&fit=crop"
+          alt="Mountain Road" class="tip-img">
+        <h4>Clothing</h4>
+        <p>Weather is unpredictable. Pack thermals, heavy woollens, and a windcheater regardless of the season.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-quote">
+      "Take only memories, leave only footprints."
+    </div>
+    <div class="footer-copy">
+      TRIPZING &copy; 2026 — CRAFTED FOR EXPLORERS
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) entry.target.classList.add('active');
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    document.querySelectorAll('img[data-fallback]').forEach(img => {
+      img.addEventListener('error', function () {
+        if (this.src !== this.dataset.fallback) {
+          this.src = this.dataset.fallback;
+        }
+      });
+    });
+
+    const heroBg = document.getElementById('heroBg');
+    const heroLocalUrl = 'images/ghero.jpg';
+    const heroCdnUrl = 'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=2070&auto=format&fit=crop';
+
+    const heroTest = new Image();
+    heroTest.onload = () => {
+      heroBg.style.background =
+        `linear-gradient(rgba(0,0,0,0.40), rgba(15,61,46,0.70)), url('${heroLocalUrl}') center/cover no-repeat`;
+    };
+    heroTest.onerror = () => {
+      heroBg.style.background =
+        `linear-gradient(rgba(15,61,46,0.55), rgba(15,61,46,0.85)), url('${heroCdnUrl}') center/cover no-repeat`;
+    };
+    heroTest.src = heroLocalUrl;
+  </script>
+
+</body>
+
+</html>

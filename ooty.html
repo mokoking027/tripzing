@@ -1,0 +1,710 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ooty Itinerary - Tripzing</title>
+  <meta name="description" content="A relaxing 7-day nature escape to Ooty, Coonoor, and Mysore.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Lora:ital,wght@0,400;0,500;0,600;1,400&family=Nunito:wght@300;400;600;700&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-color: #f4f7f4;
+      --card-bg: #ffffff;
+      --text-main: #2c3f33;
+      --text-muted: #5e7365;
+      --accent-green: #7ca88b;
+      --accent-warm: #dca368;
+      --shadow-soft: 0 12px 30px rgba(44, 63, 51, 0.05);
+      --radius-large: 24px;
+      --radius-medium: 16px;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Nunito', sans-serif;
+      background-color: var(--bg-color);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-color);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-green);
+      border-radius: 10px;
+    }
+
+    nav {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 50;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 40px;
+      background: transparent;
+    }
+
+    .logo {
+      font-family: 'Lora', serif;
+      font-size: 24px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .logo em {
+      color: var(--accent-warm);
+      font-style: italic;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+
+    .nav-links a {
+      color: rgba(255, 255, 255, 0.9);
+      font-size: 14px;
+      text-decoration: none;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.on {
+      color: #fff;
+      text-decoration: underline;
+      text-decoration-color: var(--accent-warm);
+      text-underline-offset: 6px;
+    }
+
+    .hero {
+      position: relative;
+      height: 80vh;
+      min-height: 500px;
+      background-image: url('images/teagdn.jpg');
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: white;
+      border-radius: 0 0 40px 40px;
+      box-shadow: var(--shadow-soft);
+      overflow: hidden;
+    }
+
+    .hero::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to bottom, rgba(44, 63, 51, 0.5), rgba(44, 63, 51, 0.1) 50%, rgba(124, 168, 139, 0.3) 100%);
+    }
+
+    .hero-content {
+      position: relative;
+      z-index: 2;
+      animation: fadeInDown 1.5s ease-out both;
+    }
+
+    .hero-content h1 {
+      font-family: 'Lora', serif;
+      font-size: clamp(45px, 7vw, 80px);
+      font-weight: 600;
+      letter-spacing: -1px;
+      margin-bottom: 12px;
+    }
+
+    .hero-content p {
+      font-size: 16px;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      font-weight: 600;
+      color: #fff;
+      background: rgba(124, 168, 139, 0.8);
+      padding: 6px 16px;
+      border-radius: 20px;
+      display: inline-block;
+      backdrop-filter: blur(5px);
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    .wrap {
+      max-width: 1100px;
+      margin: -50px auto 100px;
+      padding: 0 30px;
+      position: relative;
+      z-index: 10;
+    }
+
+    .overview {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      margin-bottom: 80px;
+    }
+
+    .stat-card {
+      background: var(--card-bg);
+      padding: 20px 30px;
+      border-radius: 100px;
+      box-shadow: var(--shadow-soft);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      color: var(--text-main);
+      font-weight: 600;
+      font-size: 15px;
+      transition: transform 0.3s;
+    }
+
+    .stat-card:hover {
+      transform: translateY(-5px);
+    }
+
+    .stat-icon {
+      font-size: 24px;
+      color: var(--accent-green);
+    }
+
+    .sec-head {
+      text-align: center;
+      margin-bottom: 50px;
+    }
+
+    .sec-head h2 {
+      font-family: 'Lora', serif;
+      font-size: 32px;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .sec-head p {
+      color: var(--accent-green);
+      font-size: 14px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+    }
+
+    .diary-section {
+      margin-bottom: 100px;
+    }
+
+    .diary-entry {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      margin-bottom: 50px;
+      background: var(--card-bg);
+      border-radius: var(--radius-large);
+      padding: 20px;
+      box-shadow: var(--shadow-soft);
+      transition: transform 0.4s ease;
+    }
+
+    .diary-entry:hover {
+      transform: translateY(-5px) scale(1.01);
+    }
+
+    .diary-entry:nth-child(even) {
+      flex-direction: row-reverse;
+    }
+
+    .diary-img {
+      flex: 1;
+      height: 300px;
+      border-radius: var(--radius-medium);
+      overflow: hidden;
+      position: relative;
+    }
+
+    .diary-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+    }
+
+    .diary-content {
+      flex: 1.2;
+      padding: 20px;
+    }
+
+    .day-badge {
+      display: inline-block;
+      background: #eef4f0;
+      color: var(--accent-green);
+      font-weight: 700;
+      font-size: 12px;
+      padding: 6px 12px;
+      border-radius: 12px;
+      margin-bottom: 12px;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    .diary-content h3 {
+      font-family: 'Lora', serif;
+      font-size: 26px;
+      color: var(--text-main);
+      margin-bottom: 16px;
+    }
+
+    .time-slot {
+      margin-bottom: 12px;
+    }
+
+    .time-slot strong {
+      display: block;
+      color: var(--accent-warm);
+      font-size: 13px;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .time-slot p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+    }
+
+    .scenic-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 30px;
+      margin-bottom: 100px;
+    }
+
+    .scenic-box {
+      position: relative;
+      height: 350px;
+      border-radius: var(--radius-large);
+      overflow: hidden;
+      box-shadow: var(--shadow-soft);
+    }
+
+    .scenic-box img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.8s ease;
+    }
+
+    .scenic-box:hover img {
+      transform: scale(1.05);
+    }
+
+    .scenic-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(44, 63, 51, 0.8), transparent 50%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+      color: white;
+    }
+
+    .scenic-overlay h4 {
+      font-family: 'Lora', serif;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .vibe-section {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 40px;
+      margin-bottom: 100px;
+    }
+
+    .vibe-card {
+      background: var(--card-bg);
+      border-radius: var(--radius-large);
+      padding: 40px;
+      box-shadow: var(--shadow-soft);
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .vibe-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 6px;
+      background: var(--accent-green);
+    }
+
+    .vibe-card:nth-child(2)::before {
+      background: var(--accent-warm);
+    }
+
+    .vibe-icon {
+      font-size: 40px;
+      margin-bottom: 20px;
+    }
+
+    .vibe-card h3 {
+      font-family: 'Lora', serif;
+      font-size: 24px;
+      color: var(--text-main);
+      margin-bottom: 15px;
+    }
+
+    .vibe-card p {
+      font-size: 15px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 20px;
+    }
+
+    .vibe-tags {
+      display: flex;
+      justify-content: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .vibe-tags span {
+      background: #f4f7f4;
+      color: var(--text-main);
+      padding: 6px 14px;
+      border-radius: 20px;
+      font-size: 13px;
+      font-weight: 600;
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .tip-card {
+      background: #eef4f0;
+      padding: 24px;
+      border-radius: var(--radius-medium);
+      border: 1px dashed rgba(124, 168, 139, 0.4);
+    }
+
+    .tip-card h4 {
+      font-size: 16px;
+      color: var(--text-main);
+      margin-bottom: 8px;
+    }
+
+    .tip-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+      line-height: 1.5;
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.25, 0.8, 0.25, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    footer {
+      background: var(--text-main);
+      color: white;
+      text-align: center;
+      padding: 40px 20px;
+      font-size: 14px;
+      border-radius: 40px 40px 0 0;
+    }
+
+    footer p {
+      opacity: 0.8;
+      letter-spacing: 1px;
+    }
+
+    @media (max-width: 768px) {
+
+      .diary-entry,
+      .diary-entry:nth-child(even) {
+        flex-direction: column;
+        gap: 20px;
+        padding: 15px;
+      }
+
+      .diary-img {
+        height: 200px;
+        width: 100%;
+      }
+
+      .vibe-section {
+        grid-template-columns: 1fr;
+      }
+
+      .tips-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        flex-direction: column;
+        gap: 15px;
+        padding: 20px;
+      }
+
+      .hero-content h1 {
+        font-size: 40px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <header class="hero">
+    <nav>
+      <div class="logo">Trip<em>zing</em></div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="itinerary.html">Itinerary</a>
+        <a href="ooty.html" class="on">Ooty & Coonoor</a>
+      </div>
+    </nav>
+    <div class="hero-content">
+      <p>Nature Escape • 7 Days</p>
+      <h1>Ooty & Coonoor</h1>
+    </div>
+  </header>
+
+  <div class="wrap">
+    <section class="overview reveal">
+      <div class="stat-card"><span class="stat-icon">🌲</span> Misty Forests</div>
+      <div class="stat-card"><span class="stat-icon">☕</span> Tea Estates</div>
+      <div class="stat-card"><span class="stat-icon">🚂</span> Nilgiri Toy Train</div>
+      <div class="stat-card"><span class="stat-icon">🍓</span> Fresh Berries</div>
+    </section>
+
+    <section class="diary-section">
+      <div class="sec-head reveal">
+        <p>The Journey</p>
+        <h2>Your Travel Diary</h2>
+      </div>
+
+      <div class="diary-entry reveal">
+        <div class="diary-img">
+          <img src="images/mysore.jpg" alt="Mysore Palace">
+        </div>
+        <div class="diary-content">
+          <span class="day-badge">Day 1 & 2</span>
+          <h3>Mysore Royals & Transit</h3>
+          <div class="time-slot">
+            <strong>Morning to Afternoon</strong>
+            <p>Arrive and dive into history with a visit to the grand Mysore Palace and the vast Mysore Zoo.</p>
+          </div>
+          <div class="time-slot">
+            <strong>Evening</strong>
+            <p>Stroll through Brindavan Gardens. On Day 2, take the scenic drive via Bandipur National Park towards the
+              hills of Ooty.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="diary-entry reveal">
+        <div class="diary-img">
+          <img src="images/olake.jpg" alt="Ooty Lake">
+        </div>
+        <div class="diary-content">
+          <span class="day-badge">Day 3 & 5</span>
+          <h3>Ooty Exploration & Nature</h3>
+          <div class="time-slot">
+            <strong>Morning</strong>
+            <p>Visit the vibrant Botanical Garden and Rose Garden. Later in the week, hike up to Doddabetta Peak for
+              panoramic views.</p>
+          </div>
+          <div class="time-slot">
+            <strong>Afternoon</strong>
+            <p>Enjoy peaceful boating on Ooty Lake and Pykara Lake surrounded by tall eucalyptus trees.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="diary-entry reveal">
+        <div class="diary-img">
+          <img src="images/ttrain.jpg" alt="Toy Train">
+        </div>
+        <div class="diary-content">
+          <span class="day-badge">Day 4</span>
+          <h3>Coonoor Day Trip</h3>
+          <div class="time-slot">
+            <strong>Morning</strong>
+            <p>Board the heritage Nilgiri Mountain Railway (Toy Train) winding through spectacular valleys and tunnels.
+            </p>
+          </div>
+          <div class="time-slot">
+            <strong>Afternoon</strong>
+            <p>Disembark in Coonoor. Visit the breathtaking Dolphin's Nose viewpoint and walk through endless emerald
+              tea estates.</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="diary-entry reveal">
+        <div class="diary-img">
+          <img src="images/odeprt.jpg" alt="Cafe">
+        </div>
+        <div class="diary-content">
+          <span class="day-badge">Day 6 & 7</span>
+          <h3>Leisure & Departure</h3>
+          <div class="time-slot">
+            <strong>All Day</strong>
+            <p>Dedicate Day 6 to café hopping, eating homemade chocolates, and local shopping in Ooty town.</p>
+          </div>
+          <div class="time-slot">
+            <strong>Departure</strong>
+            <p>On Day 7, take a crisp morning walk before beginning your return journey home. 🌿</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="scenic-section reveal">
+      <div class="sec-head">
+        <p>Postcards</p>
+        <h2>Scenic Highlights</h2>
+      </div>
+      <div class="scenic-grid">
+        <div class="scenic-box">
+          <img src="images/teaplt.jpg" alt="Tea Gardens">
+          <div class="scenic-overlay">
+            <h4>Tea Plantations</h4>
+            <p>Lush green rolling hills</p>
+          </div>
+        </div>
+        <div class="scenic-box">
+          <img src="images/olakeb.jpg" alt="Ooty Lake">
+          <div class="scenic-overlay">
+            <h4>Ooty Lake</h4>
+            <p>Peaceful paddle boating</p>
+          </div>
+        </div>
+        <div class="scenic-box">
+          <img src="images/nilgri.jpg" alt="Toy Train">
+          <div class="scenic-overlay">
+            <h4>Nilgiri Toy Train</h4>
+            <p>A UNESCO Heritage ride</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="vibe-section reveal">
+      <div class="vibe-card">
+        <div class="vibe-icon">🏡</div>
+        <h3>Cozy Stays</h3>
+        <p>Experience the warmth of colonial-era cottages, heritage bungalows, and homestays nestled deep within the tea
+          gardens.</p>
+        <div class="vibe-tags">
+          <span>Heritage Bungalows</span>
+          <span>Tea Estate Homestays</span>
+          <span>Hill Top Resorts</span>
+        </div>
+      </div>
+      <div class="vibe-card">
+        <div class="vibe-icon">☕</div>
+        <h3>Cafes & Treats</h3>
+        <p>Indulge in freshly brewed Nilgiri tea, warm scones, and Ooty's famous homemade fudge and chocolates.</p>
+        <div class="vibe-tags">
+          <span>Homemade Chocolates</span>
+          <span>Fresh Bakery</span>
+          <span>Nilgiri Tea</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="tips-section reveal">
+      <div class="sec-head">
+        <p>Need to Know</p>
+        <h2>Travel Tips</h2>
+      </div>
+      <div class="tips-grid">
+        <div class="tip-card">
+          <h4>⛅ Weather</h4>
+          <p>Pleasant summers (15-20°C) and chilly winters (5-12°C). Always carry a light jacket.</p>
+        </div>
+        <div class="tip-card">
+          <h4>🧳 Packing</h4>
+          <p>Comfortable walking shoes for gardens, umbrellas for sudden mist/rain, and warm layers.</p>
+        </div>
+        <div class="tip-card">
+          <h4>📅 Best Time</h4>
+          <p>October to June is ideal. Avoid monsoons (July-August) due to heavy rainfall and leeches.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>🌿 Travel • Relax • Breathe Nature @ Ooty & Coonoor</p>
+  </footer>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      const reveals = document.querySelectorAll('.reveal');
+
+      const revealObserver = new IntersectionObserver((entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('active');
+            observer.unobserve(entry.target);
+          }
+        });
+      }, {
+        threshold: 0.1,
+        rootMargin: "0px 0px -50px 0px"
+      });
+
+      reveals.forEach(reveal => {
+        revealObserver.observe(reveal);
+      });
+    });
+  </script>
+</body>
+
+</html>

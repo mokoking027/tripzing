@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Weather - Tripzing</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/three@0.158.0/build/three.min.js"></script>
+</head>
+
+<body>
+
+  <canvas id="weather-bg"></canvas>
+
+  <div id="globe-modal" class="globe-modal hidden">
+    <div class="globe-inner glass">
+      <div class="globe-header">
+        <span class="globe-title">🌍 Live Earth View</span>
+        <button class="globe-close" onclick="closeGlobe()">✕</button>
+      </div>
+      <canvas id="globe-canvas"></canvas>
+      <div class="globe-info" id="globe-info">Initializing globe...</div>
+    </div>
+  </div>
+
+  <div class="wp">
+
+    <div class="bg-orb orb1"></div>
+    <div class="bg-orb orb2"></div>
+    <div class="bg-orb orb3"></div>
+
+    <nav>
+      <div class="logo">Trip<em>zing</em></div>
+      <div class="nav-links">
+        <a href="index.html">Home</a>
+        <a href="weather.html" class="on">Weather</a>
+        <a href="itinerary.html">Itinerary</a>
+        <a href="contact.html">Contact</a>
+      </div>
+    </nav>
+
+    <div class="wrap">
+
+      <div class="search-section">
+        <div class="search-badge">✦ Real-time Forecast</div>
+        <h2>weather forecast</h2>
+        <div class="sbox">
+          <span class="search-icon">⌕</span>
+          <input type="text" id="ci" placeholder="Search any city in the world..." />
+          <div class="unit-toggle">
+            <button id="btn-c" class="unit-btn active" onclick="setUnit('C')">°C</button>
+            <button id="btn-f" class="unit-btn" onclick="setUnit('F')">°F</button>
+          </div>
+          <button onclick="gw()">Search</button>
+        </div>
+        <div class="quick-actions" id="quick-actions">
+          <button class="qa-btn" onclick="setCity('London')">🇬🇧 London</button>
+          <button class="qa-btn" onclick="setCity('Tokyo')">🇯🇵 Tokyo</button>
+          <button class="qa-btn" onclick="setCity('New York')">🗽 New York</button>
+          <button class="qa-btn" onclick="setCity('Dubai')">🏙️ Dubai</button>
+          <button class="qa-btn" onclick="setCity('Sydney')">🦘 Sydney</button>
+        </div>
+      </div>
+
+      <div id="out">
+        <div class="empty">
+          <div class="empty-globe">🌍</div>
+          <p>Search a city to unlock the forecast</p>
+          <small>Get temp, wind, UV, AQI, alerts &amp; more</small>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+
+</html>

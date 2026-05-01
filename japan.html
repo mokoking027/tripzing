@@ -1,0 +1,1371 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Japan | Where Tradition Meets the Future</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Noto+Serif+JP:wght@300;400;600;700&family=Poppins:wght@300;400;500;600&display=swap"
+        rel="stylesheet">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --sakura: #ffb7c5;
+            --sakura-dark: #ff8fa3;
+            --japan-red: #bc002d;
+            --dark-bg: #0a0a0a;
+            --glass-bg: rgba(20, 20, 20, 0.6);
+            --glass-border: rgba(255, 255, 255, 0.1);
+            --text-main: #f4f4f4;
+            --text-muted: #a0a0a0;
+            --font-heading: 'Noto Serif JP', serif;
+            --font-body: 'Poppins', sans-serif;
+            --border-rad-large: 16px;
+            --border-rad-small: 8px;
+            --transition-smooth: 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--dark-bg);
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+            line-height: 1.6;
+        }
+
+        #sakura-container {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 100;
+            overflow: hidden;
+        }
+
+        .petal {
+            position: absolute;
+            background-color: var(--sakura);
+            border-radius: 15px 0 15px 0;
+            opacity: 0.8;
+            animation: fall linear infinite, sway ease-in-out infinite alternate;
+        }
+
+        @keyframes fall {
+            0% {
+                top: -10%;
+            }
+
+            100% {
+                top: 110%;
+            }
+        }
+
+        @keyframes sway {
+            0% {
+                transform: translateX(0) rotate(0deg);
+            }
+
+            100% {
+                transform: translateX(50px) rotate(45deg);
+            }
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 30px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: var(--transition-smooth);
+            background: transparent;
+        }
+
+        nav.scrolled {
+            padding: 15px 50px;
+            background: rgba(10, 10, 10, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0, 0, 0, 0.1);
+        }
+
+        .logo {
+            font-family: var(--font-heading);
+            font-size: 1.8rem;
+            font-weight: 700;
+            color: white;
+            text-decoration: none;
+            letter-spacing: 2px;
+            transition: var(--transition-smooth);
+            display: flex;
+            align-items: center;
+        }
+
+        .logo:hover {
+            transform: scale(1.05);
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .logo span {
+            color: var(--japan-red);
+            transition: var(--transition-smooth);
+        }
+
+        .logo:hover span {
+            text-shadow: 0 0 15px rgba(188, 0, 45, 0.5);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            position: relative;
+            padding-bottom: 5px;
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--sakura);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--japan-red);
+            transition: var(--transition-smooth);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.active::after {
+            width: 100%;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/fuji.jpg') center/cover;
+            animation: slowZoom 25s infinite alternate ease-in-out;
+            z-index: -2;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(10, 10, 10, 0.4), rgba(10, 10, 10, 0.6) 60%, var(--dark-bg));
+            z-index: -1;
+        }
+
+        .hero-content {
+            z-index: 1;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeUp 1.5s cubic-bezier(0.25, 1, 0.5, 1) forwards 0.5s;
+        }
+
+        .hero h1 {
+            font-family: var(--font-heading);
+            font-size: clamp(4rem, 10vw, 8rem);
+            font-weight: 600;
+            letter-spacing: clamp(8px, 3vw, 20px);
+            margin-bottom: 10px;
+            color: white;
+            text-shadow: 0 10px 40px rgba(0, 0, 0, 0.8);
+            line-height: 1.1;
+        }
+
+        .hero p {
+            font-size: clamp(1rem, 2vw, 1.4rem);
+            font-weight: 300;
+            letter-spacing: clamp(3px, 1vw, 6px);
+            color: var(--sakura);
+            text-transform: uppercase;
+            text-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            color: white;
+            text-decoration: none;
+            opacity: 0.8;
+            animation: float 2.5s infinite ease-in-out;
+            font-size: 0.85rem;
+            letter-spacing: 3px;
+            font-family: var(--font-heading);
+            transition: var(--transition-smooth);
+        }
+
+        .scroll-down:hover {
+            opacity: 1;
+            color: var(--sakura);
+        }
+
+        .scroll-line {
+            width: 1px;
+            height: 60px;
+            background: linear-gradient(to bottom, var(--japan-red), transparent);
+        }
+
+        .section {
+            padding: 100px 20px;
+            max-width: 1300px;
+            margin: 0 auto;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-heading);
+            font-size: clamp(2.5rem, 4vw, 3.5rem);
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: white;
+            line-height: 1.2;
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--sakura-dark);
+            font-weight: 400;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+        }
+
+        .info-panel {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+            margin-bottom: 40px;
+        }
+
+        .info-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-rad-large);
+            padding: 25px 30px;
+            width: 270px;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+            transition: var(--transition-smooth);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .info-card:hover {
+            transform: translateY(-8px);
+            background: rgba(30, 30, 30, 0.85);
+            box-shadow: 0 15px 40px rgba(188, 0, 45, 0.15);
+            border-color: rgba(188, 0, 45, 0.4);
+        }
+
+        .info-icon {
+            font-size: 2.2rem;
+            color: var(--sakura-dark);
+            transition: var(--transition-smooth);
+        }
+
+        .info-card:hover .info-icon {
+            transform: scale(1.1);
+            color: var(--japan-red);
+        }
+
+        .info-text h4 {
+            font-family: var(--font-heading);
+            font-size: 0.95rem;
+            color: var(--text-muted);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .info-text p {
+            font-size: 1.05rem;
+            color: white;
+            font-weight: 500;
+        }
+
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 320px;
+            gap: 25px;
+        }
+
+        .place-card {
+            position: relative;
+            border-radius: var(--border-rad-large);
+            overflow: hidden;
+            cursor: pointer;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+            border: 1px solid transparent;
+            transition: var(--transition-smooth);
+        }
+
+        .place-tokyo {
+            grid-column: 1 / 8;
+            grid-row: 1 / 3;
+        }
+
+        .place-kyoto {
+            grid-column: 8 / 13;
+            grid-row: 1 / 2;
+        }
+
+        .place-osaka {
+            grid-column: 8 / 13;
+            grid-row: 2 / 3;
+        }
+
+        .place-hokkaido {
+            grid-column: 1 / 6;
+            grid-row: 3 / 4;
+        }
+
+        .place-fuji {
+            grid-column: 6 / 13;
+            grid-row: 3 / 4;
+        }
+
+        .place-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 1s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .place-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95) 0%, rgba(0, 0, 0, 0.1) 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 35px;
+            transition: var(--transition-smooth);
+        }
+
+        .place-card:hover {
+            border-color: rgba(188, 0, 45, 0.3);
+            box-shadow: 0 15px 40px rgba(188, 0, 45, 0.2);
+        }
+
+        .place-card:hover img {
+            transform: scale(1.06) rotate(-0.5deg);
+        }
+
+        .place-card:hover .place-overlay {
+            background: linear-gradient(to top, rgba(188, 0, 45, 0.85) 0%, rgba(0, 0, 0, 0.2) 70%);
+        }
+
+        .place-title {
+            font-family: var(--font-heading);
+            font-size: 2.2rem;
+            font-weight: 600;
+            color: white;
+            transition: var(--transition-smooth);
+        }
+
+        .place-desc {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease, opacity 0.4s ease;
+            color: rgba(255, 255, 255, 0.9);
+            font-size: 1rem;
+            margin-top: 10px;
+            opacity: 0;
+        }
+
+        .place-card:hover .place-desc {
+            max-height: 120px;
+            opacity: 1;
+        }
+
+        .place-card:hover .place-title {
+            transform: translateY(-5px);
+            color: var(--sakura);
+        }
+
+        .food-container {
+            display: flex;
+            gap: 25px;
+            overflow-x: auto;
+            padding: 10px 10px 30px 10px;
+            scrollbar-width: thin;
+            scrollbar-color: var(--japan-red) var(--dark-bg);
+            scroll-snap-type: x mandatory;
+        }
+
+        .food-container::-webkit-scrollbar {
+            height: 6px;
+        }
+
+        .food-container::-webkit-scrollbar-thumb {
+            background: var(--japan-red);
+            border-radius: 10px;
+        }
+
+        .food-card {
+            min-width: 320px;
+            height: 420px;
+            border-radius: var(--border-rad-large);
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            scroll-snap-align: center;
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+            transition: var(--transition-smooth);
+            cursor: pointer;
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.8s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .food-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(188, 0, 45, 0.2);
+        }
+
+        .food-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .food-overlay {
+            position: absolute;
+            inset: 0;
+            padding: 30px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.95), transparent 60%);
+            transition: var(--transition-smooth);
+        }
+
+        .food-card:hover .food-overlay {
+            background: linear-gradient(to top, rgba(188, 0, 45, 0.9), transparent 70%);
+        }
+
+        .food-card h3 {
+            font-family: var(--font-heading);
+            font-size: 1.6rem;
+            color: white;
+            margin-bottom: 5px;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .food-card p {
+            font-size: 0.95rem;
+            color: rgba(255, 255, 255, 0.8);
+            opacity: 0;
+            transform: translateY(15px);
+            transition: var(--transition-smooth);
+        }
+
+        .food-card:hover h3 {
+            transform: translateY(0);
+        }
+
+        .food-card:hover p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 30px;
+        }
+
+        .culture-card {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-rad-large);
+            padding: 25px;
+            text-align: center;
+            transition: var(--transition-smooth);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 5px 20px rgba(0, 0, 0, 0.2);
+        }
+
+        .culture-card:hover {
+            transform: translateY(-10px);
+            border-color: rgba(188, 0, 45, 0.4);
+            box-shadow: 0 15px 35px rgba(188, 0, 45, 0.15);
+            background: rgba(25, 25, 25, 0.8);
+        }
+
+        .culture-img {
+            width: 100%;
+            height: 160px;
+            object-fit: cover;
+            border-radius: var(--border-rad-small);
+            margin-bottom: 20px;
+            transition: var(--transition-smooth);
+        }
+
+        .culture-card:hover .culture-img {
+            transform: scale(1.03);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        .culture-card h4 {
+            font-family: var(--font-heading);
+            font-size: 1.25rem;
+            color: white;
+            transition: var(--transition-smooth);
+        }
+
+        .culture-card:hover h4 {
+            color: var(--sakura);
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .timeline-item {
+            background: var(--glass-bg);
+            border: 1px solid var(--glass-border);
+            border-radius: var(--border-rad-large);
+            margin-bottom: 25px;
+            overflow: hidden;
+            backdrop-filter: blur(10px);
+            transition: var(--transition-smooth);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .timeline-item:hover {
+            border-color: rgba(255, 255, 255, 0.2);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.3);
+        }
+
+        .timeline-header {
+            padding: 30px 35px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .day-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .day-badge {
+            background: rgba(188, 0, 45, 0.1);
+            color: var(--sakura-dark);
+            padding: 6px 18px;
+            border-radius: 30px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid rgba(188, 0, 45, 0.3);
+            letter-spacing: 1px;
+            transition: var(--transition-smooth);
+        }
+
+        .day-title {
+            font-family: var(--font-heading);
+            font-size: 1.4rem;
+            color: white;
+            font-weight: 600;
+        }
+
+        .timeline-icon {
+            transition: var(--transition-smooth);
+            color: var(--text-muted);
+            font-size: 1.1rem;
+        }
+
+        .timeline-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.25, 1, 0.5, 1);
+            background: rgba(0, 0, 0, 0.4);
+        }
+
+        .timeline-body {
+            padding: 0 35px 35px 35px;
+            display: flex;
+            flex-direction: column;
+            gap: 18px;
+        }
+
+        .timeline-details {
+            display: flex;
+            gap: 25px;
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 10px;
+            padding-top: 20px;
+            border-top: 1px solid var(--glass-border);
+            font-weight: 500;
+        }
+
+        .timeline-details span {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .timeline-details i {
+            color: var(--japan-red);
+        }
+
+        .timeline-body ul {
+            list-style: none;
+        }
+
+        .timeline-body li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            color: #eee;
+            font-size: 1.05rem;
+        }
+
+        .timeline-body li i {
+            color: var(--sakura-dark);
+            margin-top: 5px;
+            font-size: 0.85rem;
+        }
+
+        .timeline-item.active .timeline-content {
+            max-height: 600px;
+        }
+
+        .timeline-item.active .timeline-icon {
+            transform: rotate(180deg);
+            color: var(--japan-red);
+        }
+
+        .timeline-item.active .day-badge {
+            background: var(--japan-red);
+            color: white;
+            border-color: var(--japan-red);
+        }
+
+        .timeline-item.active {
+            border-color: rgba(188, 0, 45, 0.3);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 120px 20px;
+            position: relative;
+            background: linear-gradient(to top, rgba(188, 0, 45, 0.08), transparent);
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 45px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 16px 45px;
+            font-family: var(--font-body);
+            font-size: 1rem;
+            font-weight: 500;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            cursor: pointer;
+            transition: var(--transition-smooth);
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, var(--japan-red), #e60036);
+            color: white;
+            border: none;
+            box-shadow: 0 10px 25px rgba(188, 0, 45, 0.3);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 35px rgba(188, 0, 45, 0.5);
+            background: linear-gradient(135deg, #e60036, #ff1a4f);
+        }
+
+        .btn-outline {
+            background: rgba(255, 255, 255, 0.05);
+            color: white;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            backdrop-filter: blur(10px);
+        }
+
+        .btn-outline:hover {
+            background: rgba(255, 255, 255, 0.15);
+            border-color: white;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(255, 255, 255, 0.1);
+        }
+
+        footer {
+            padding: 50px 20px;
+            text-align: center;
+            border-top: 1px solid var(--glass-border);
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            font-family: var(--font-heading);
+            letter-spacing: 1px;
+            background: var(--dark-bg);
+        }
+
+        @keyframes slowZoom {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.1);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                transform: translateY(40px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(-50%);
+            }
+
+            50% {
+                transform: translateY(10px) translateX(-50%);
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: 1s cubic-bezier(0.25, 1, 0.5, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media(max-width: 992px) {
+            .places-grid {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .place-card {
+                height: 350px;
+            }
+        }
+
+        @media(max-width: 768px) {
+            nav {
+                padding: 20px 30px;
+            }
+
+            nav.scrolled {
+                padding: 15px 30px;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .info-panel {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info-card {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .timeline-icon {
+                position: absolute;
+                right: 30px;
+                top: 35px;
+            }
+
+            .timeline-details {
+                flex-direction: column;
+                gap: 10px;
+            }
+
+            .section {
+                padding: 80px 20px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <div id="sakura-container"></div>
+
+    <nav id="navbar">
+        <a href="index.html" class="logo">Trip<span>zing</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="#places">Places</a></li>
+            <li><a href="#culture">Culture</a></li>
+            <li><a href="itinerary.html">Itinerary</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <h1>JAPAN</h1>
+            <p>Where Tradition Meets the Future</p>
+        </div>
+        <a href="#info" class="scroll-down">
+            <span>Discover</span>
+            <div class="scroll-line"></div>
+        </a>
+    </header>
+
+    <section id="info" class="info-panel reveal">
+        <div class="info-card">
+            <i class="fa-solid fa-cloud-sun info-icon"></i>
+            <div class="info-text">
+                <h4>BEST TIME</h4>
+                <p>Mar–May & Oct–Nov</p>
+            </div>
+        </div>
+        <div class="info-card">
+            <i class="fa-solid fa-coins info-icon"></i>
+            <div class="info-text">
+                <h4>CURRENCY</h4>
+                <p>Japanese Yen (¥)</p>
+            </div>
+        </div>
+        <div class="info-card">
+            <i class="fa-solid fa-language info-icon"></i>
+            <div class="info-text">
+                <h4>LANGUAGE</h4>
+                <p>Japanese</p>
+            </div>
+        </div>
+        <div class="info-card">
+            <i class="fa-solid fa-train-subway info-icon"></i>
+            <div class="info-text">
+                <h4>TRAVEL TIP</h4>
+                <p>Get a JR Pass</p>
+            </div>
+        </div>
+    </section>
+
+    <section id="places" class="section">
+        <div class="section-header reveal">
+            <h2>Iconic Destinations</h2>
+            <p>Explore the diverse beauty of Japan</p>
+        </div>
+        <div class="places-grid">
+            <div class="place-card place-tokyo reveal">
+                <img src="images/tokyo.jpg" loading="lazy" alt="Tokyo Skyline Night">
+                <div class="place-overlay">
+                    <h3 class="place-title">Tokyo</h3>
+                    <p class="place-desc">A bustling metropolis combining neon-lit skyscrapers with historic temples.
+                    </p>
+                </div>
+            </div>
+            <div class="place-card place-kyoto reveal" style="transition-delay: 0.1s">
+                <img src="images/ninnaj.jpg"
+                    loading="lazy" alt="Kyoto Temples">
+                <div class="place-overlay">
+                    <h3 class="place-title">Kyoto</h3>
+                    <p class="place-desc">The cultural heart of Japan, famous for classical Buddhist temples and
+                        gardens.</p>
+                </div>
+            </div>
+            <div class="place-card place-osaka reveal" style="transition-delay: 0.2s">
+                <img src="images/osaka.jpg" loading="lazy" alt="Osaka Dotonbori">
+                <div class="place-overlay">
+                    <h3 class="place-title">Osaka</h3>
+                    <p class="place-desc">Known for its modern architecture, nightlife and hearty street food.</p>
+                </div>
+            </div>
+            <div class="place-card place-hokkaido reveal" style="transition-delay: 0.1s">
+                <img src="images/fox.jpg" loading="lazy" alt="Hokkaido Snow Fox">
+                <div class="place-overlay">
+                    <h3 class="place-title">Hokkaido</h3>
+                    <p class="place-desc">Japan's northernmost island, famous for its volcanoes, natural hot springs,
+                        and ski areas.</p>
+                </div>
+            </div>
+            <div class="place-card place-fuji reveal" style="transition-delay: 0.2s">
+                <img src="images/fuji.jpg" loading="lazy" alt="Mount Fuji">
+                <div class="place-overlay">
+                    <h3 class="place-title">Mount Fuji</h3>
+                    <p class="place-desc">Japan’s highest mountain and most iconic volcano, surrounded by beautiful
+                        lakes.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-header reveal">
+            <h2>Culinary Mastery</h2>
+            <p>Taste the perfection of Japanese Cuisine</p>
+        </div>
+        <div class="food-container reveal">
+            <div class="food-card">
+                <img src="images/sushi.jpg" loading="lazy" alt="Sushi">
+                <div class="food-overlay">
+                    <h3>Sushi</h3>
+                    <p>Fresh, elegant, and timeless.</p>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="images/ramen.jpg" loading="lazy" alt="Ramen">
+                <div class="food-overlay">
+                    <h3>Ramen</h3>
+                    <p>Rich broth, perfect noodles.</p>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="images/tempur.jpg" loading="lazy" alt="Tempura">
+                <div class="food-overlay">
+                    <h3>Tempura</h3>
+                    <p>Lightly battered, crispy perfection.</p>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="images/takoy.jpg" loading="lazy" alt="Takoyaki">
+                <div class="food-overlay">
+                    <h3>Takoyaki</h3>
+                    <p>Osaka's iconic street food.</p>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="images/matcha.jpg" loading="lazy" alt="Matcha">
+                <div class="food-overlay">
+                    <h3>Matcha</h3>
+                    <p>Traditional green tea desserts.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="culture" class="section">
+        <div class="section-header reveal">
+            <h2>Cultural Tapestry</h2>
+            <p>Immerse yourself in Japanese traditions</p>
+        </div>
+        <div class="culture-grid">
+            <div class="culture-card reveal">
+                <img src="images/sakura.jpg" loading="lazy" alt="Cherry Blossoms" class="culture-img">
+                <h4>Cherry Blossoms</h4>
+            </div>
+            <div class="culture-card reveal" style="transition-delay: 0.1s">
+                <img src="images/teacr.jpg" loading="lazy" alt="Tea Ceremony" class="culture-img">
+                <h4>Tea Ceremony</h4>
+            </div>
+            <div class="culture-card reveal" style="transition-delay: 0.2s">
+                <img src="images/shinkn.png" loading="lazy"
+                    alt="Bullet Trains" class="culture-img">
+                <h4>Bullet Trains</h4>
+            </div>
+            <div class="culture-card reveal" style="transition-delay: 0.3s">
+                <img src="images/akiba.jpg" loading="lazy" alt="Anime Streets" class="culture-img">
+                <h4>Anime & Manga</h4>
+            </div>
+            <div class="culture-card reveal" style="transition-delay: 0.4s">
+                <img src="images/torii.jpg"
+                    loading="lazy" alt="Shrines & Temples" class="culture-img">
+                <h4>Shrines & Temples</h4>
+            </div>
+        </div>
+    </section>
+
+    <section id="itinerary" class="section">
+        <div class="section-header reveal">
+            <h2>The Journey</h2>
+            <p>10 Days of Exploration</p>
+        </div>
+        <div class="timeline">
+
+            <div class="timeline-item reveal">
+                <div class="timeline-header" onclick="toggleTimeline(this)">
+                    <div class="day-info">
+                        <span class="day-badge">Day 1</span>
+                        <span class="day-title">Arrival in Tokyo</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-body">
+                        <div class="timeline-details">
+                            <span><i class="fa-solid fa-hotel"></i> Shinjuku Granbell</span>
+                            <span><i class="fa-solid fa-utensils"></i> Ichiran Ramen</span>
+                        </div>
+                        <ul>
+                            <li><i class="fa-solid fa-plane-arrival"></i> Arrive in Tokyo & Check-in</li>
+                            <li><i class="fa-solid fa-moon"></i> Explore Shinjuku nightlife</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-header" onclick="toggleTimeline(this)">
+                    <div class="day-info">
+                        <span class="day-badge">Day 2</span>
+                        <span class="day-title">Tokyo Highlights</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-body">
+                        <div class="timeline-details">
+                            <span><i class="fa-solid fa-hotel"></i> Shinjuku</span>
+                            <span><i class="fa-solid fa-utensils"></i> Sushi Dai</span>
+                        </div>
+                        <ul>
+                            <li><i class="fa-solid fa-users"></i> Shibuya Crossing</li>
+                            <li><i class="fa-solid fa-torii-gate"></i> Meiji Shrine</li>
+                            <li><i class="fa-solid fa-bag-shopping"></i> Harajuku street shopping</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-header" onclick="toggleTimeline(this)">
+                    <div class="day-info">
+                        <span class="day-badge">Day 3</span>
+                        <span class="day-title">Asakusa & Skytree</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-body">
+                        <div class="timeline-details">
+                            <span><i class="fa-solid fa-hotel"></i> Tokyo</span>
+                            <span><i class="fa-solid fa-utensils"></i> Tempura Daikokuya</span>
+                        </div>
+                        <ul>
+                            <li><i class="fa-solid fa-vihara"></i> Senso-ji Temple</li>
+                            <li><i class="fa-solid fa-building"></i> Tokyo Skytree</li>
+                            <li><i class="fa-solid fa-store"></i> Nakamise Street</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-header" onclick="toggleTimeline(this)">
+                    <div class="day-info">
+                        <span class="day-badge">Day 4</span>
+                        <span class="day-title">Hakone Day Trip</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-body">
+                        <div class="timeline-details">
+                            <span><i class="fa-solid fa-hotel"></i> Tokyo</span>
+                            <span><i class="fa-solid fa-utensils"></i> Local Hakone Cuisine</span>
+                        </div>
+                        <ul>
+                            <li><i class="fa-solid fa-mountain"></i> Mt Fuji views</li>
+                            <li><i class="fa-solid fa-ship"></i> Lake Ashi cruise</li>
+                            <li><i class="fa-solid fa-cable-car"></i> Ropeway experience</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-header" onclick="toggleTimeline(this)">
+                    <div class="day-info">
+                        <span class="day-badge">Day 5</span>
+                        <span class="day-title">Travel to Kyoto</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-body">
+                        <div class="timeline-details">
+                            <span><i class="fa-solid fa-hotel"></i> Hotel The Celestine Kyoto</span>
+                            <span><i class="fa-solid fa-utensils"></i> Nishiki Market food</span>
+                        </div>
+                        <ul>
+                            <li><i class="fa-solid fa-train"></i> Bullet train (Shinkansen) ride</li>
+                            <li><i class="fa-solid fa-fan"></i> Explore historic Gion district</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-header" onclick="toggleTimeline(this)">
+                    <div class="day-info">
+                        <span class="day-badge">Day 6</span>
+                        <span class="day-title">Kyoto Temples</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-body">
+                        <div class="timeline-details">
+                            <span><i class="fa-solid fa-hotel"></i> Kyoto</span>
+                            <span><i class="fa-solid fa-utensils"></i> Kyoto Ramen Koji</span>
+                        </div>
+                        <ul>
+                            <li><i class="fa-solid fa-torii-gate"></i> Fushimi Inari Shrine</li>
+                            <li><i class="fa-solid fa-vihara"></i> Kinkaku-ji (Golden Pavilion)</li>
+                            <li><i class="fa-brands fa-pagelines"></i> Arashiyama Bamboo Forest</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-header" onclick="toggleTimeline(this)">
+                    <div class="day-info">
+                        <span class="day-badge">Day 7</span>
+                        <span class="day-title">Nara Day Trip</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-body">
+                        <div class="timeline-details">
+                            <span><i class="fa-solid fa-hotel"></i> Kyoto</span>
+                            <span><i class="fa-solid fa-utensils"></i> Local Nara restaurants</span>
+                        </div>
+                        <ul>
+                            <li><i class="fa-solid fa-leaf"></i> Nara Park (friendly deer)</li>
+                            <li><i class="fa-solid fa-vihara"></i> Todai-ji Temple</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-header" onclick="toggleTimeline(this)">
+                    <div class="day-info">
+                        <span class="day-badge">Day 8</span>
+                        <span class="day-title">Osaka Exploration</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-body">
+                        <div class="timeline-details">
+                            <span><i class="fa-solid fa-hotel"></i> Hotel Monterey Osaka</span>
+                            <span><i class="fa-solid fa-utensils"></i> Dotonbori street food</span>
+                        </div>
+                        <ul>
+                            <li><i class="fa-brands fa-fort-awesome"></i> Osaka Castle</li>
+                            <li><i class="fa-solid fa-city"></i> Dotonbori nightlife</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-header" onclick="toggleTimeline(this)">
+                    <div class="day-info">
+                        <span class="day-badge">Day 9</span>
+                        <span class="day-title">Universal Studios Japan</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-body">
+                        <div class="timeline-details">
+                            <span><i class="fa-solid fa-hotel"></i> Osaka</span>
+                            <span><i class="fa-solid fa-burger"></i> Park Dining</span>
+                        </div>
+                        <ul>
+                            <li><i class="fa-solid fa-ticket"></i> Full day at Universal Studios Japan</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-header" onclick="toggleTimeline(this)">
+                    <div class="day-info">
+                        <span class="day-badge">Day 10</span>
+                        <span class="day-title">Departure</span>
+                    </div>
+                    <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                </div>
+                <div class="timeline-content">
+                    <div class="timeline-body">
+                        <ul>
+                            <li><i class="fa-solid fa-gift"></i> Final shopping & souvenirs</li>
+                            <li><i class="fa-solid fa-plane-departure"></i> Departure from Osaka</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta-section reveal">
+        <div class="section-header">
+            <h2>Ready to Discover Japan?</h2>
+            <p>Your unforgettable journey starts here.</p>
+        </div>
+        <div class="btn-group">
+            <a href="#" class="btn btn-primary">Plan Your Trip</a>
+            <a href="#places" class="btn btn-outline">Explore More</a>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2026 Japan Travel Experience. A Journey Through Time.</p>
+    </footer>
+
+    <script>
+        const sakuraContainer = document.getElementById('sakura-container');
+        const numPetals = 35;
+        for (let i = 0; i < numPetals; i++) {
+            let petal = document.createElement('div');
+            petal.classList.add('petal');
+
+            let size = Math.random() * 8 + 6;
+            let left = Math.random() * 100;
+            let duration = Math.random() * 8 + 12;
+            let delay = Math.random() * 10;
+
+            petal.style.width = `${size}px`;
+            petal.style.height = `${size}px`;
+            petal.style.left = `${left}vw`;
+            petal.style.animationDuration = `${duration}s, 4s`;
+            petal.style.animationDelay = `${delay}s, 0s`;
+
+            sakuraContainer.appendChild(petal);
+        }
+
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 80) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        function toggleTimeline(element) {
+            const item = element.parentElement;
+            document.querySelectorAll('.timeline-item').forEach(i => {
+                if (i !== item) i.classList.remove('active');
+            });
+            item.classList.toggle('active');
+        }
+        document.querySelector('.timeline-item').classList.add('active');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

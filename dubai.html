@@ -1,0 +1,1528 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dubai - Futuristic Luxury Experience</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;700;900&family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+    <style>
+        :root {
+            --bg-base: #0B0C10;
+            --bg-surface: #1F2833;
+            --text-main: #C5C6C7;
+            --text-bright: #FFFFFF;
+
+            --gold-luxury: #D4AF37;
+            --gold-bright: #FDE08B;
+            --neon-blue: #00E5FF;
+            --deep-purple: #2A0845;
+
+            --glass-bg: rgba(31, 40, 51, 0.4);
+            --glass-border: rgba(0, 229, 255, 0.3);
+
+            --font-display: 'Orbitron', sans-serif;
+            --font-body: 'Poppins', sans-serif;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-body);
+            background-color: var(--bg-base);
+            color: var(--text-main);
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--bg-base);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--neon-blue);
+            border-radius: 10px;
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            padding: 25px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            z-index: 1000;
+            transition: 0.5s ease;
+            background: transparent;
+        }
+
+        nav.scrolled {
+            padding: 15px 50px;
+            background: rgba(11, 12, 16, 0.85);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-bottom: 1px solid var(--glass-border);
+            box-shadow: 0 4px 30px rgba(0, 229, 255, 0.1);
+        }
+
+        .logo {
+            font-family: var(--font-display);
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            text-decoration: none;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+        }
+
+        .logo span {
+            color: var(--gold-luxury);
+            text-shadow: 0 0 15px var(--gold-luxury);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 40px;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--text-main);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            letter-spacing: 1.5px;
+            position: relative;
+            padding-bottom: 5px;
+            transition: 0.3s;
+            text-transform: uppercase;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.on {
+            color: var(--neon-blue);
+            text-shadow: 0 0 8px var(--neon-blue);
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 0%;
+            height: 2px;
+            background: var(--neon-blue);
+            transition: 0.3s;
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.on::after {
+            width: 100%;
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            overflow: hidden;
+        }
+
+        .hero-bg {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('images/burj.jpg') center/cover;
+            animation: slowZoom 30s infinite alternate linear;
+            z-index: -3;
+        }
+
+        .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(42, 8, 69, 0.3), rgba(11, 12, 16, 0.8) 80%, var(--bg-base));
+            z-index: -2;
+        }
+
+        .light-streaks {
+            position: absolute;
+            inset: 0;
+            z-index: -1;
+            overflow: hidden;
+            pointer-events: none;
+        }
+
+        .streak {
+            position: absolute;
+            height: 2px;
+            width: 150px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            opacity: 0;
+            animation: shootStreak 4s infinite linear;
+        }
+
+        .streak:nth-child(1) {
+            top: 20%;
+            left: -150px;
+            animation-delay: 0s;
+        }
+
+        .streak:nth-child(2) {
+            top: 50%;
+            left: -150px;
+            width: 300px;
+            animation-delay: 2s;
+            background: linear-gradient(90deg, transparent, var(--gold-luxury), transparent);
+        }
+
+        .streak:nth-child(3) {
+            top: 80%;
+            left: -150px;
+            animation-delay: 1.5s;
+        }
+
+        .hero-content {
+            z-index: 1;
+            transform: translateY(30px);
+            opacity: 0;
+            animation: fadeUp 2s cubic-bezier(0.19, 1, 0.22, 1) forwards 0.5s;
+        }
+
+        .hero h1 {
+            font-family: var(--font-display);
+            font-size: 8rem;
+            font-weight: 900;
+            letter-spacing: 15px;
+            margin-bottom: 10px;
+            color: transparent;
+            -webkit-text-stroke: 2px var(--text-bright);
+            position: relative;
+        }
+
+        .hero h1::before {
+            content: 'DUBAI';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            color: var(--text-bright);
+            -webkit-text-stroke: 0;
+            filter: drop-shadow(0 0 30px rgba(0, 229, 255, 0.6));
+            animation: pulseGlow 4s infinite alternate;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            font-weight: 400;
+            letter-spacing: 8px;
+            color: var(--gold-luxury);
+            text-transform: uppercase;
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+            margin-top: 10px;
+        }
+
+        .scroll-down {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            color: var(--neon-blue);
+            text-decoration: none;
+            opacity: 0.8;
+            animation: float 2s infinite ease-in-out;
+            font-family: var(--font-display);
+            font-size: 0.8rem;
+            letter-spacing: 4px;
+        }
+
+        .scroll-icon {
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 8px var(--neon-blue));
+        }
+
+        .section {
+            padding: 120px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .section-header {
+            text-align: center;
+            margin-bottom: 80px;
+            position: relative;
+        }
+
+        .section-header h2 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 15px;
+            color: var(--text-bright);
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            text-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
+        }
+
+        .section-header p {
+            font-size: 1.1rem;
+            color: var(--neon-blue);
+            font-weight: 500;
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            text-shadow: 0 0 10px rgba(0, 229, 255, 0.4);
+        }
+
+        .section-header::after {
+            content: '';
+            position: absolute;
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gold-luxury);
+            box-shadow: 0 0 15px var(--gold-luxury);
+        }
+
+        .info-panel {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            flex-wrap: wrap;
+            margin-top: -60px;
+            position: relative;
+            z-index: 10;
+            margin-bottom: 60px;
+        }
+
+        .info-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
+            border-radius: 15px;
+            padding: 25px;
+            width: 260px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            transition: 0.4s ease;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .info-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+            opacity: 0;
+            transition: 0.4s;
+        }
+
+        .info-card:hover::before {
+            opacity: 1;
+            box-shadow: 0 0 20px var(--neon-blue);
+        }
+
+        .info-card:hover {
+            transform: translateY(-10px);
+            background: rgba(31, 40, 51, 0.8);
+            border-color: var(--neon-blue);
+            box-shadow: 0 15px 40px rgba(0, 229, 255, 0.15);
+        }
+
+        .info-icon {
+            font-size: 2rem;
+            color: var(--gold-luxury);
+            filter: drop-shadow(0 0 5px rgba(212, 175, 55, 0.5));
+            transition: 0.4s;
+        }
+
+        .info-card:hover .info-icon {
+            transform: scale(1.1);
+            color: var(--neon-blue);
+            filter: drop-shadow(0 0 10px var(--neon-blue));
+        }
+
+        .info-text h4 {
+            font-family: var(--font-display);
+            font-size: 1.1rem;
+            color: var(--text-bright);
+            margin-bottom: 5px;
+            letter-spacing: 1px;
+        }
+
+        .info-text p {
+            font-size: 0.9rem;
+            color: var(--text-main);
+            font-weight: 300;
+        }
+
+        .places-grid {
+            display: grid;
+            grid-template-columns: repeat(12, 1fr);
+            grid-auto-rows: 350px;
+            gap: 20px;
+        }
+
+        .place-card {
+            position: relative;
+            border-radius: 10px;
+            overflow: hidden;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.4s;
+        }
+
+        .place-card::after {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border: 2px solid var(--neon-blue);
+            border-radius: 10px;
+            opacity: 0;
+            transition: 0.4s;
+            pointer-events: none;
+        }
+
+        .place-card:hover::after {
+            opacity: 1;
+            box-shadow: inset 0 0 20px rgba(0, 229, 255, 0.3), 0 0 20px rgba(0, 229, 255, 0.3);
+        }
+
+        .place-burj {
+            grid-column: 1 / 7;
+            grid-row: 1 / 3;
+        }
+
+        .place-palm {
+            grid-column: 7 / 13;
+            grid-row: 1 / 2;
+        }
+
+        .place-marina {
+            grid-column: 7 / 13;
+            grid-row: 2 / 3;
+        }
+
+        .place-safari {
+            grid-column: 1 / 6;
+            grid-row: 3 / 4;
+        }
+
+        .place-mall {
+            grid-column: 6 / 13;
+            grid-row: 3 / 4;
+        }
+
+        .place-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 1s cubic-bezier(0.19, 1, 0.22, 1);
+            filter: grayscale(20%) contrast(1.1);
+        }
+
+        .place-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(11, 12, 16, 0.95) 0%, rgba(11, 12, 16, 0.2) 60%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 40px;
+            transition: 0.4s;
+        }
+
+        .place-card:hover img {
+            transform: scale(1.1);
+            filter: grayscale(0%) brightness(1.1);
+        }
+
+        .place-title {
+            font-family: var(--font-display);
+            font-size: 2.2rem;
+            color: var(--text-bright);
+            transition: 0.4s;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .place-desc {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease;
+            color: var(--text-main);
+            font-size: 1.05rem;
+            margin-top: 10px;
+            font-weight: 300;
+        }
+
+        .place-card:hover .place-desc {
+            max-height: 100px;
+        }
+
+        .place-card:hover .place-title {
+            transform: translateY(-5px);
+            color: var(--gold-luxury);
+            text-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .experiences-section {
+            position: relative;
+            margin: 50px 0;
+        }
+
+        .experiences-section::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: radial-gradient(circle at center, rgba(42, 8, 69, 0.2) 0%, transparent 70%);
+            z-index: -1;
+        }
+
+        .culture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 30px;
+        }
+
+        .culture-card {
+            background: var(--bg-surface);
+            border-radius: 12px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: 0.4s;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+        }
+
+        .culture-card::before {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 0;
+            height: 3px;
+            background: var(--neon-blue);
+            transition: 0.4s;
+            box-shadow: 0 0 15px var(--neon-blue);
+        }
+
+        .culture-card:hover::before {
+            width: 100%;
+        }
+
+        .culture-card:hover {
+            transform: translateY(-15px);
+            border-color: rgba(0, 229, 255, 0.3);
+            background: #26313f;
+        }
+
+        .culture-icon-wrapper {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            background: rgba(0, 229, 255, 0.1);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin: 0 auto 25px auto;
+            border: 1px solid rgba(0, 229, 255, 0.2);
+            transition: 0.4s;
+        }
+
+        .culture-icon {
+            font-size: 2.2rem;
+            color: var(--text-bright);
+            transition: 0.4s;
+        }
+
+        .culture-card:hover .culture-icon-wrapper {
+            background: var(--neon-blue);
+            box-shadow: 0 0 25px var(--neon-blue);
+            border-color: var(--neon-blue);
+        }
+
+        .culture-card:hover .culture-icon {
+            color: var(--bg-base);
+        }
+
+        .culture-card h4 {
+            font-family: var(--font-display);
+            font-size: 1.3rem;
+            color: var(--text-bright);
+            margin-bottom: 12px;
+            letter-spacing: 1px;
+        }
+
+        .culture-card p {
+            font-size: 0.95rem;
+            color: var(--text-main);
+            line-height: 1.6;
+        }
+
+        .food-section {
+            padding: 100px 0;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            background: rgba(11, 12, 16, 0.5);
+        }
+
+        .food-container {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 20px 50px 50px 50px;
+            scrollbar-width: none;
+            scroll-snap-type: x mandatory;
+        }
+
+        .food-container::-webkit-scrollbar {
+            display: none;
+        }
+
+        .food-card {
+            min-width: 320px;
+            height: 450px;
+            border-radius: 12px;
+            position: relative;
+            overflow: hidden;
+            flex-shrink: 0;
+            scroll-snap-align: center;
+            cursor: pointer;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: 0.8s cubic-bezier(0.19, 1, 0.22, 1);
+            filter: brightness(0.7);
+        }
+
+        .food-card:hover img {
+            transform: scale(1.1);
+            filter: brightness(1);
+        }
+
+        .food-overlay {
+            position: absolute;
+            inset: 0;
+            padding: 35px;
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            background: linear-gradient(to top, rgba(11, 12, 16, 0.95) 0%, transparent 60%);
+            transition: 0.4s;
+            border-radius: 12px;
+        }
+
+        .food-card:hover .food-overlay {
+            box-shadow: inset 0 0 30px rgba(212, 175, 55, 0.3);
+        }
+
+        .food-card h3 {
+            font-family: var(--font-display);
+            font-size: 1.8rem;
+            font-weight: 600;
+            color: var(--gold-luxury);
+            margin-bottom: 5px;
+            transform: translateY(20px);
+            transition: 0.4s;
+            text-transform: uppercase;
+        }
+
+        .food-card p {
+            font-size: 1rem;
+            color: var(--text-bright);
+            font-weight: 300;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: 0.4s;
+            letter-spacing: 1px;
+        }
+
+        .food-card:hover h3 {
+            transform: translateY(0);
+            text-shadow: 0 0 15px rgba(212, 175, 55, 0.5);
+        }
+
+        .food-card:hover p {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .timeline {
+            max-width: 900px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 40px;
+            top: 0;
+            height: 100%;
+            width: 2px;
+            background: linear-gradient(to bottom, var(--neon-blue), var(--deep-purple), var(--gold-luxury));
+            box-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding-left: 90px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: 33px;
+            top: 30px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--bg-base);
+            border: 3px solid var(--neon-blue);
+            box-shadow: 0 0 15px var(--neon-blue);
+            transition: 0.4s;
+            z-index: 2;
+        }
+
+        .timeline-card {
+            background: var(--glass-bg);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: 0.4s;
+            border: 1px solid var(--glass-border);
+        }
+
+        .timeline-card:hover {
+            transform: translateX(10px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            border-color: var(--neon-blue);
+        }
+
+        .timeline-item:hover .timeline-dot {
+            background: var(--neon-blue);
+            transform: scale(1.3);
+            box-shadow: 0 0 25px var(--neon-blue);
+        }
+
+        .timeline-header {
+            padding: 25px 30px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            cursor: pointer;
+            background: rgba(255, 255, 255, 0.02);
+        }
+
+        .day-info {
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .day-badge {
+            background: transparent;
+            color: var(--gold-luxury);
+            padding: 5px 15px;
+            border: 1px solid var(--gold-luxury);
+            border-radius: 4px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            font-family: var(--font-display);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .day-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--text-bright);
+        }
+
+        .timeline-icon {
+            transition: 0.4s;
+            color: var(--neon-blue);
+            font-size: 1.2rem;
+        }
+
+        .timeline-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.6s ease;
+        }
+
+        .timeline-body {
+            padding: 0 30px 30px 30px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            margin-top: 10px;
+            padding-top: 20px;
+        }
+
+        .timeline-body ul {
+            list-style: none;
+        }
+
+        .timeline-body li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 15px;
+            color: var(--text-main);
+            font-size: 1rem;
+            font-weight: 300;
+        }
+
+        .timeline-body li i {
+            color: var(--neon-blue);
+            margin-top: 4px;
+            font-size: 1rem;
+            text-shadow: 0 0 5px var(--neon-blue);
+        }
+
+        .timeline-item.active .timeline-content {
+            max-height: 500px;
+        }
+
+        .timeline-item.active .timeline-icon {
+            transform: rotate(180deg);
+            color: var(--gold-luxury);
+        }
+
+        .timeline-item.active .timeline-card {
+            border-color: var(--neon-blue);
+            background: rgba(31, 40, 51, 0.7);
+        }
+
+        .timeline-item.active .day-badge {
+            background: var(--gold-luxury);
+            color: var(--bg-base);
+            box-shadow: 0 0 15px rgba(212, 175, 55, 0.4);
+        }
+
+        .cta-section {
+            text-align: center;
+            padding: 150px 20px;
+            position: relative;
+            margin-top: 80px;
+            background: url('images/dnight.jpg') center/cover fixed;
+        }
+
+        .cta-overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(11, 12, 16, 0.85);
+            backdrop-filter: blur(5px);
+        }
+
+        .cta-content {
+            position: relative;
+            z-index: 1;
+        }
+
+        .cta-section h2 {
+            font-family: var(--font-display);
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--text-bright);
+            margin-bottom: 25px;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+        }
+
+        .btn-group {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-top: 40px;
+            flex-wrap: wrap;
+        }
+
+        .btn {
+            padding: 18px 45px;
+            font-family: var(--font-display);
+            font-size: 1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-decoration: none;
+            position: relative;
+            overflow: hidden;
+            z-index: 1;
+        }
+
+        .btn-primary {
+            background: transparent;
+            color: var(--bg-base);
+            border: none;
+        }
+
+        .btn-primary::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(45deg, var(--gold-luxury), var(--gold-bright));
+            z-index: -1;
+            transition: 0.4s;
+        }
+
+        .btn-primary:hover::before {
+            filter: brightness(1.2);
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.5);
+        }
+
+        .btn-outline {
+            background: rgba(0, 0, 0, 0.5);
+            color: var(--neon-blue);
+            border: 1px solid var(--neon-blue);
+            backdrop-filter: blur(10px);
+            box-shadow: inset 0 0 10px rgba(0, 229, 255, 0.2);
+        }
+
+        .btn-outline:hover {
+            background: var(--neon-blue);
+            color: var(--bg-base);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0, 229, 255, 0.5);
+        }
+
+        footer {
+            padding: 40px 20px;
+            text-align: center;
+            background: #050608;
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
+            color: var(--text-main);
+            font-size: 0.9rem;
+            font-weight: 400;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        footer span {
+            color: var(--neon-blue);
+            font-family: var(--font-display);
+            font-weight: 700;
+            text-shadow: 0 0 10px var(--neon-blue);
+        }
+
+        @keyframes slowZoom {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.15);
+            }
+        }
+
+        @keyframes fadeUp {
+            from {
+                transform: translateY(50px);
+                opacity: 0;
+            }
+
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(-50%);
+            }
+
+            50% {
+                transform: translateY(10px) translateX(-50%);
+            }
+        }
+
+        @keyframes pulseGlow {
+            from {
+                filter: drop-shadow(0 0 20px rgba(0, 229, 255, 0.4));
+            }
+
+            to {
+                filter: drop-shadow(0 0 40px rgba(0, 229, 255, 0.8));
+            }
+        }
+
+        @keyframes shootStreak {
+            0% {
+                transform: translateX(0);
+                opacity: 0;
+            }
+
+            10% {
+                opacity: 1;
+            }
+
+            90% {
+                opacity: 1;
+            }
+
+            100% {
+                transform: translateX(120vw);
+                opacity: 0;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: 1s cubic-bezier(0.19, 1, 0.22, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        @media(max-width: 992px) {
+            .hero h1 {
+                font-size: 5rem;
+                letter-spacing: 8px;
+            }
+
+            .places-grid {
+                display: flex;
+                flex-direction: column;
+            }
+
+            .place-card {
+                height: 300px;
+            }
+
+            .timeline::before {
+                left: 20px;
+            }
+
+            .timeline-item {
+                padding-left: 60px;
+            }
+
+            .timeline-dot {
+                left: 13px;
+            }
+        }
+
+        @media(max-width: 768px) {
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 3.5rem;
+                letter-spacing: 4px;
+            }
+
+            .hero p {
+                font-size: 0.9rem;
+                letter-spacing: 3px;
+            }
+
+            .info-panel {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .info-card {
+                width: 100%;
+                max-width: 350px;
+            }
+
+            .timeline-header {
+                flex-direction: column;
+                align-items: flex-start;
+                gap: 15px;
+            }
+
+            .timeline-icon {
+                position: absolute;
+                right: 20px;
+                top: 25px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav id="navbar">
+        <a href="#" class="logo">Trip<span>zing</span></a>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="itinerary.html">Itinerary</a></li>
+            <li><a href="dubai.html" class="on">Dubai</a></li>
+        </ul>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-bg"></div>
+        <div class="hero-overlay"></div>
+        <div class="light-streaks">
+            <div class="streak"></div>
+            <div class="streak"></div>
+            <div class="streak"></div>
+        </div>
+        <div class="hero-content">
+            <h1>DUBAI</h1>
+            <p>Where Luxury Meets the Future</p>
+        </div>
+        <a href="#explore" class="scroll-down">
+            <i class="fa-solid fa-angle-down scroll-icon"></i>
+            EXPLORE
+        </a>
+    </header>
+
+    <div class="info-panel" id="explore">
+        <div class="info-card reveal">
+            <i class="fa-regular fa-calendar-check info-icon"></i>
+            <div class="info-text">
+                <h4>Best Time</h4>
+                <p>Nov - March (Winter)</p>
+            </div>
+        </div>
+        <div class="info-card reveal" style="transition-delay: 0.1s">
+            <i class="fa-solid fa-coins info-icon"></i>
+            <div class="info-text">
+                <h4>Currency</h4>
+                <p>UAE Dirham (AED)</p>
+            </div>
+        </div>
+        <div class="info-card reveal" style="transition-delay: 0.2s">
+            <i class="fa-solid fa-language info-icon"></i>
+            <div class="info-text">
+                <h4>Language</h4>
+                <p>Arabic & English</p>
+            </div>
+        </div>
+        <div class="info-card reveal" style="transition-delay: 0.3s">
+            <i class="fa-solid fa-shield-halved info-icon"></i>
+            <div class="info-text">
+                <h4>Travel Tip</h4>
+                <p>Dress modestly in public</p>
+            </div>
+        </div>
+    </div>
+
+    <section id="destinations" class="section">
+        <div class="section-header reveal">
+            <p>Architectural Marvels</p>
+            <h2>The Skyline</h2>
+        </div>
+        <div class="places-grid">
+            <div class="place-card place-burj reveal">
+                <img src="images/burj.jpg" loading="lazy" alt="Burj Khalifa">
+                <div class="place-overlay">
+                    <h3 class="place-title">Burj Khalifa</h3>
+                    <p class="place-desc">Touch the sky at the world's tallest building, an iconic symbol of Dubai's
+                        limitless ambition.</p>
+                </div>
+            </div>
+            <div class="place-card place-palm reveal" style="transition-delay: 0.1s">
+                <img src="images/palm.jpg" loading="lazy" alt="Palm Jumeirah">
+                <div class="place-overlay">
+                    <h3 class="place-title">Palm Jumeirah</h3>
+                    <p class="place-desc">An engineering masterpiece, this artificial archipelago is home to
+                        ultra-luxury resorts.</p>
+                </div>
+            </div>
+            <div class="place-card place-marina reveal" style="transition-delay: 0.2s">
+                <img src="images/dnight.jpg" loading="lazy" alt="Dubai Marina">
+                <div class="place-overlay">
+                    <h3 class="place-title">Dubai Marina</h3>
+                    <p class="place-desc">An affluent residential neighborhood known for The Beach at JBR and stunning
+                        luxury yachts.</p>
+                </div>
+            </div>
+            <div class="place-card place-safari reveal" style="transition-delay: 0.1s">
+                <img src="images/safari.jpg" loading="lazy" alt="Desert Safari">
+                <div class="place-overlay">
+                    <h3 class="place-title">Desert Safari</h3>
+                    <p class="place-desc">Experience the golden dunes with thrilling dune bashing, camel rides, and
+                        bedouin camps.</p>
+                </div>
+            </div>
+            <div class="place-card place-mall reveal" style="transition-delay: 0.2s">
+                <img src="images/dmall.jpg" loading="lazy" alt="Dubai Mall">
+                <div class="place-overlay">
+                    <h3 class="place-title">Dubai Mall</h3>
+                    <p class="place-desc">The ultimate destination for luxury shopping, entertainment, and the
+                        magnificent indoor aquarium.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experiences" class="section experiences-section">
+        <div class="section-header reveal">
+            <p>Live The Dream</p>
+            <h2>Luxury Lifestyle</h2>
+        </div>
+        <div class="culture-grid">
+            <div class="culture-card reveal">
+                <div class="culture-icon-wrapper">
+                    <i class="fa-solid fa-truck-monster culture-icon"></i>
+                </div>
+                <h4>Desert Safari</h4>
+                <p>Conquer the majestic red dunes in a luxury 4x4, followed by a VIP stargazing dinner.</p>
+            </div>
+            <div class="culture-card reveal" style="transition-delay: 0.1s">
+                <div class="culture-icon-wrapper">
+                    <i class="fa-solid fa-parachute-box culture-icon"></i>
+                </div>
+                <h4>Skydiving</h4>
+                <p>Freefall over the iconic Palm Jumeirah for an unmatched adrenaline rush.</p>
+            </div>
+            <div class="culture-card reveal" style="transition-delay: 0.2s">
+                <div class="culture-icon-wrapper">
+                    <i class="fa-solid fa-ship culture-icon"></i>
+                </div>
+                <h4>Yacht Experience</h4>
+                <p>Charter a private mega-yacht and cruise the Arabian Gulf in pure opulence.</p>
+            </div>
+            <div class="culture-card reveal" style="transition-delay: 0.3s">
+                <div class="culture-icon-wrapper">
+                    <i class="fa-solid fa-bag-shopping culture-icon"></i>
+                </div>
+                <h4>Luxury Shopping</h4>
+                <p>Shop exclusive designer brands in the world's most extravagant boutiques.</p>
+            </div>
+            <div class="culture-card reveal" style="transition-delay: 0.4s">
+                <div class="culture-icon-wrapper">
+                    <i class="fa-solid fa-martini-glass-citrus culture-icon"></i>
+                </div>
+                <h4>Elite Nightlife</h4>
+                <p>Experience world-class DJs, neon lights, and VIP tables at elite sky-high clubs.</p>
+            </div>
+        </div>
+    </section>
+
+    <div id="cuisine" class="food-section">
+        <div class="section-header reveal">
+            <p>Gastronomic Excellence</p>
+            <h2>High-End Dining</h2>
+        </div>
+        <div class="food-container reveal">
+            <div class="food-card">
+                <img src="images/mezze.jpg" loading="lazy" alt="Arabic Cuisine">
+                <div class="food-overlay">
+                    <h3>Arabic Mezze</h3>
+                    <p>A lavish spread of traditional flavors.</p>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="images/ltrain.jpg"
+                    loading="lazy" alt="Fine Dining">
+                <div class="food-overlay">
+                    <h3>Fine Dining</h3>
+                    <p>Michelin-starred culinary perfection.</p>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="images/shawrm.png" loading="lazy" alt="Shawarma">
+                <div class="food-overlay">
+                    <h3>Premium Shawarma</h3>
+                    <p>Authentic Middle Eastern street food.</p>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="images/kunafa.jpg" loading="lazy"
+                    alt="Kunafa">
+                <div class="food-overlay">
+                    <h3>Kunafa</h3>
+                    <p>Warm cheese pastry soaked in sweet syrup.</p>
+                </div>
+            </div>
+            <div class="food-card">
+                <img src="images/mefood.jpg" loading="lazy"
+                    alt="Street Food">
+                <div class="food-overlay">
+                    <h3>Spice Markets</h3>
+                    <p>Exotic ingredients and local delicacies.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <section id="itinerary" class="section">
+        <div class="section-header reveal">
+            <p>7 Days of Opulence</p>
+            <h2>The Master Itinerary</h2>
+        </div>
+        <div class="timeline">
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header" onclick="toggleTimeline(this)">
+                        <div class="day-info">
+                            <span class="day-badge">Day 1</span>
+                            <h3 class="day-title">Arrival in Dubai</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-body">
+                            <ul>
+                                <li><i class="fa-solid fa-plane-arrival"></i> VIP Arrival & luxury hotel check-in.</li>
+                                <li><i class="fa-solid fa-bag-shopping"></i> Dubai Mall premium exploration.</li>
+                                <li><i class="fa-solid fa-water"></i> Witness the spectacular Dubai Fountain show.</li>
+                                <li><i class="fa-solid fa-building"></i> Burj Khalifa At The Top night view.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header" onclick="toggleTimeline(this)">
+                        <div class="day-info">
+                            <span class="day-badge">Day 2</span>
+                            <h3 class="day-title">Modern Dubai</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-body">
+                            <ul>
+                                <li><i class="fa-solid fa-tree"></i> Palm Jumeirah luxury tour.</li>
+                                <li><i class="fa-solid fa-water-ladder"></i> Adrenaline at Atlantis Aquaventure.</li>
+                                <li><i class="fa-solid fa-umbrella-beach"></i> Relax at the exclusive JBR Beach.</li>
+                                <li><i class="fa-solid fa-ship"></i> Elite Marina dinner cruise on a luxury yacht.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header" onclick="toggleTimeline(this)">
+                        <div class="day-info">
+                            <span class="day-badge">Day 3</span>
+                            <h3 class="day-title">Desert Safari</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-body">
+                            <ul>
+                                <li><i class="fa-solid fa-car"></i> Premium 4x4 dune bashing experience.</li>
+                                <li><i class="fa-solid fa-paw"></i> Traditional camel rides across the dunes.</li>
+                                <li><i class="fa-solid fa-camera"></i> Sunset photography in the golden desert.</li>
+                                <li><i class="fa-solid fa-fire"></i> Private VIP BBQ dinner & cultural shows.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header" onclick="toggleTimeline(this)">
+                        <div class="day-info">
+                            <span class="day-badge">Day 4</span>
+                            <h3 class="day-title">Old Dubai & Heritage</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-body">
+                            <ul>
+                                <li><i class="fa-solid fa-landmark-dome"></i> Explore the historic Al Fahidi District.
+                                </li>
+                                <li><i class="fa-solid fa-ferry"></i> Traditional Abra ride across Dubai Creek.</li>
+                                <li><i class="fa-solid fa-ring"></i> Shop for treasures at the Gold & Spice Souks.</li>
+                                <li><i class="fa-solid fa-utensils"></i> Authentic traditional Arabic dinner.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header" onclick="toggleTimeline(this)">
+                        <div class="day-info">
+                            <span class="day-badge">Day 5</span>
+                            <h3 class="day-title">Abu Dhabi Trip</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-body">
+                            <ul>
+                                <li><i class="fa-solid fa-mosque"></i> Marvel at the grand Sheikh Zayed Mosque.</li>
+                                <li><i class="fa-solid fa-car-side"></i> High-speed thrills at Ferrari World.</li>
+                                <li><i class="fa-solid fa-palette"></i> Appreciate global art at Louvre Abu Dhabi.</li>
+                                <li><i class="fa-solid fa-city"></i> Evening Corniche walk.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header" onclick="toggleTimeline(this)">
+                        <div class="day-info">
+                            <span class="day-badge">Day 6</span>
+                            <h3 class="day-title">Theme Parks & Leisure</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-body">
+                            <ul>
+                                <li><i class="fa-solid fa-film"></i> Cinematic adventures at Motiongate Dubai.</li>
+                                <li><i class="fa-solid fa-music"></i> Vibrant entertainment at Bollywood Parks.</li>
+                                <li><i class="fa-solid fa-gem"></i> Evening shopping & luxury leisure time.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="timeline-item reveal">
+                <div class="timeline-dot"></div>
+                <div class="timeline-card">
+                    <div class="timeline-header" onclick="toggleTimeline(this)">
+                        <div class="day-info">
+                            <span class="day-badge">Day 7</span>
+                            <h3 class="day-title">Departure</h3>
+                        </div>
+                        <i class="fa-solid fa-chevron-down timeline-icon"></i>
+                    </div>
+                    <div class="timeline-content">
+                        <div class="timeline-body">
+                            <ul>
+                                <li><i class="fa-solid fa-spa"></i> Morning relaxation at the hotel.</li>
+                                <li><i class="fa-solid fa-gift"></i> Last-minute luxury souvenir shopping.</li>
+                                <li><i class="fa-solid fa-plane-departure"></i> Private chauffeur airport transfer.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="cta-section">
+        <div class="cta-overlay"></div>
+        <div class="cta-content reveal">
+            <h2>Experience The Future of Luxury</h2>
+            <div class="btn-group">
+                <a href="#" class="btn btn-primary">Plan Your Luxury Trip</a>
+                <a href="#destinations" class="btn btn-outline">Explore Dubai</a>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>Engineered for excellence by <span>Tripzing</span>. Welcome to the future.</p>
+    </footer>
+
+    <script>
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        function toggleTimeline(element) {
+            const item = element.closest('.timeline-item');
+            document.querySelectorAll('.timeline-item').forEach(i => {
+                if (i !== item) i.classList.remove('active');
+            });
+            item.classList.toggle('active');
+        }
+        document.querySelector('.timeline-item').classList.add('active');
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
+</body>
+
+</html>

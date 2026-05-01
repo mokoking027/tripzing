@@ -1,0 +1,672 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Leh-Ladakh — The Himalayan Journal</title>
+  <meta name="description" content="A premium 7-day immersive journey through the heart of the Himalayas.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+    rel="stylesheet">
+
+  <style>
+    :root {
+      --bg-deep: #0a1f44;
+      --bg-dark: #07152d;
+      --accent-gold: #b45309;
+      --accent-blue: #3b82f6;
+      --text-main: #f5f7fa;
+      --text-muted: #94a3b8;
+      --glass: rgba(255, 255, 255, 0.05);
+      --glass-border: rgba(255, 255, 255, 0.1);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--bg-deep);
+      color: var(--text-main);
+      -webkit-font-smoothing: antialiased;
+      overflow-x: hidden;
+      line-height: 1.6;
+    }
+
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+
+    ::-webkit-scrollbar-track {
+      background: var(--bg-dark);
+    }
+
+    ::-webkit-scrollbar-thumb {
+      background: var(--accent-gold);
+      border-radius: 10px;
+    }
+
+    .glass {
+      background: var(--glass);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--glass-border);
+      border-radius: 16px;
+    }
+
+    nav {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 60px;
+      transition: all 0.4s ease;
+    }
+
+    nav.scrolled {
+      background: rgba(7, 21, 45, 0.85);
+      backdrop-filter: blur(10px);
+      padding: 15px 60px;
+      border-bottom: 1px solid var(--glass-border);
+    }
+
+    .logo {
+      font-family: 'Playfair Display', serif;
+      font-size: 26px;
+      font-weight: 700;
+      color: #fff;
+      text-decoration: none;
+    }
+
+    .logo em {
+      color: var(--accent-gold);
+      font-style: italic;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 35px;
+    }
+
+    .nav-links a {
+      color: var(--text-muted);
+      font-size: 13px;
+      text-decoration: none;
+      letter-spacing: 1px;
+      font-weight: 500;
+      text-transform: uppercase;
+      transition: all 0.3s;
+    }
+
+    .nav-links a:hover,
+    .nav-links a.on {
+      color: #fff;
+    }
+
+    .nav-links a.on {
+      position: relative;
+    }
+
+    .nav-links a.on::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--accent-gold);
+    }
+
+    .hero {
+      position: relative;
+      height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      overflow: hidden;
+    }
+
+    .hero-bg {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(rgba(10, 31, 68, 0.6), rgba(10, 31, 68, 0.9)), url('images/lhero.png');
+      background-size: cover;
+      background-position: center;
+      z-index: -1;
+      transform: scale(1.1);
+      animation: zoomOut 20s infinite alternate;
+    }
+
+    @keyframes zoomOut {
+      from {
+        transform: scale(1.1);
+      }
+
+      to {
+        transform: scale(1);
+      }
+    }
+
+    .hero-content {
+      max-width: 900px;
+      padding: 0 20px;
+      z-index: 10;
+    }
+
+    .hero-content span {
+      display: block;
+      font-size: 14px;
+      text-transform: uppercase;
+      letter-spacing: 6px;
+      color: var(--accent-gold);
+      margin-bottom: 20px;
+      font-weight: 600;
+      opacity: 0;
+      animation: fadeInDown 1s 0.2s forwards;
+    }
+
+    .hero-content h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: clamp(48px, 8vw, 90px);
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 24px;
+      opacity: 0;
+      animation: fadeInUp 1s 0.5s forwards;
+    }
+
+    .hero-content p {
+      font-size: 18px;
+      color: var(--text-muted);
+      max-width: 600px;
+      margin: 0 auto;
+      opacity: 0;
+      animation: fadeInUp 1s 0.8s forwards;
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes fadeInDown {
+      from {
+        opacity: 0;
+        transform: translateY(-30px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    section {
+      padding: 100px 60px;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .section-head {
+      margin-bottom: 60px;
+      text-align: center;
+    }
+
+    .section-head h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .section-head p {
+      color: var(--text-muted);
+      font-size: 15px;
+      letter-spacing: 1px;
+    }
+
+    .itinerary-grid {
+      display: grid;
+      gap: 30px;
+    }
+
+    .day-card {
+      display: grid;
+      grid-template-columns: 120px 1fr;
+      gap: 40px;
+      padding: 40px;
+      transition: all 0.4s ease;
+    }
+
+    .day-card:hover {
+      background: rgba(255, 255, 255, 0.08);
+      transform: translateY(-5px);
+    }
+
+    .day-num {
+      text-align: center;
+    }
+
+    .day-num h3 {
+      font-family: 'Playfair Display', serif;
+      font-size: 48px;
+      color: var(--accent-gold);
+      line-height: 1;
+    }
+
+    .day-num span {
+      font-size: 10px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      color: var(--text-muted);
+    }
+
+    .day-content h4 {
+      font-size: 22px;
+      margin-bottom: 20px;
+      color: #fff;
+    }
+
+    .activity-list {
+      list-style: none;
+    }
+
+    .activity-list li {
+      margin-bottom: 12px;
+      padding-left: 25px;
+      position: relative;
+      color: var(--text-muted);
+      font-size: 15px;
+    }
+
+    .activity-list li::before {
+      content: '✦';
+      position: absolute;
+      left: 0;
+      color: var(--accent-gold);
+      font-size: 12px;
+    }
+
+    .scenic-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 40px;
+    }
+
+    .scenic-item {
+      position: relative;
+      border-radius: 20px;
+      overflow: hidden;
+      aspect-ratio: 16/10;
+    }
+
+    .scenic-item img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 1s ease;
+    }
+
+    .scenic-item:hover img {
+      transform: scale(1.1);
+    }
+
+    .scenic-overlay {
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(to top, rgba(7, 21, 45, 0.9), transparent 60%);
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      padding: 30px;
+    }
+
+    .scenic-overlay h4 {
+      font-family: 'Playfair Display', serif;
+      font-size: 24px;
+      margin-bottom: 8px;
+    }
+
+    .scenic-overlay p {
+      font-size: 13px;
+      color: var(--text-muted);
+    }
+
+    .tips-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 25px;
+    }
+
+    .tip-card {
+      padding: 40px 30px;
+      text-align: center;
+    }
+
+    .tip-icon {
+      font-size: 32px;
+      margin-bottom: 20px;
+      display: inline-block;
+      color: var(--accent-gold);
+    }
+
+    .tip-card h4 {
+      font-size: 16px;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      margin-bottom: 15px;
+    }
+
+    .tip-card p {
+      font-size: 14px;
+      color: var(--text-muted);
+    }
+
+    footer {
+      background: var(--bg-dark);
+      padding: 80px 60px 40px;
+      text-align: center;
+      border-top: 1px solid var(--glass-border);
+    }
+
+    .footer-quote {
+      font-family: 'Playfair Display', serif;
+      font-size: 28px;
+      font-style: italic;
+      max-width: 700px;
+      margin: 0 auto 40px;
+      color: var(--text-muted);
+    }
+
+    .footer-copy {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      color: rgba(255, 255, 255, 0.3);
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: all 0.8s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    .reveal.active {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    @media (max-width: 1024px) {
+
+      .scenic-grid,
+      .tips-grid {
+        grid-template-columns: 1fr;
+      }
+
+      nav {
+        padding: 20px 30px;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .day-card {
+        grid-template-columns: 1fr;
+        text-align: center;
+      }
+
+      .day-num {
+        margin-bottom: 20px;
+      }
+
+      .activity-list li {
+        text-align: left;
+      }
+
+      .hero-content h1 {
+        font-size: 48px;
+      }
+
+      section {
+        padding: 60px 20px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+  <nav id="navbar">
+    <a href="index.html" class="logo">Trip<em>zing</em></a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="itinerary.html">Itinerary</a>
+      <a href="leh.html" class="on">Leh-Ladakh</a>
+    </div>
+  </nav>
+
+  <header class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-content">
+      <span>Exotic Mountain Trail</span>
+      <h1>Leh-Ladakh Itinerary</h1>
+      <p>Journey through the Himalayas — a soulful exploration of high-altitude deserts, cobalt lakes, and ancient
+        monasteries.</p>
+    </div>
+  </header>
+
+  <section id="itinerary">
+    <div class="section-head reveal">
+      <h2>The Mountain Journal</h2>
+      <p>7 DAYS • 11,500 FT ALTITUDE • INFINITE MEMORIES</p>
+    </div>
+
+    <div class="itinerary-grid">
+      <div class="day-card glass reveal">
+        <div class="day-num">
+          <h3>01</h3>
+          <span>Arrival</span>
+        </div>
+        <div class="day-content">
+          <h4>Acclimatization in Leh</h4>
+          <ul class="activity-list">
+            <li>Welcome at Leh Kushok Bakula Rimpochee Airport.</li>
+            <li>Check-in at 'Grand Himalaya Luxury Hotel' and mandatory rest for acclimatization.</li>
+            <li>Light evening walk in Leh Market for local crafts and traditional dinner.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="day-card glass reveal">
+        <div class="day-num">
+          <h3>02</h3>
+          <span>Local</span>
+        </div>
+        <div class="day-content">
+          <h4>Monasteries & Palaces</h4>
+          <ul class="activity-list">
+            <li>Visit the iconic Shanti Stupa for panoramic valley views.</li>
+            <li>Explore the historical Leh Palace and its museum of royal artifacts.</li>
+            <li>Afternoon lunch at 'Tibetan Kitchen' for authentic Himalayan flavors.</li>
+            <li>Evening visit to the Hall of Fame to honor the Himalayan defenders.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="day-card glass reveal">
+        <div class="day-num">
+          <h3>03</h3>
+          <span>Nubra</span>
+        </div>
+        <div class="day-content">
+          <h4>Khardung La to Nubra Valley</h4>
+          <ul class="activity-list">
+            <li>The drive of a lifetime via Khardung La Pass (one of the world's highest motorable roads).</li>
+            <li>Breathtaking stopovers for tea and mountain vistas.</li>
+            <li>Arrival at Nubra Valley and check-in at the serene 'Hotel Grand Nubra'.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="day-card glass reveal">
+        <div class="day-num">
+          <h3>04</h3>
+          <span>Dunes</span>
+        </div>
+        <div class="day-content">
+          <h4>Sand Dunes & Diskit</h4>
+          <ul class="activity-list">
+            <li>Visit the majestic Diskit Monastery and its giant Maitreya Buddha.</li>
+            <li>Camel safari on the double-humped Bactrian camels at Hunder Sand Dunes.</li>
+            <li>Evening cultural program and local organic dinner at the camp.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="day-card glass reveal">
+        <div class="day-num">
+          <h3>05</h3>
+          <span>Pangong</span>
+        </div>
+        <div class="day-content">
+          <h4>The Azure Pangong Lake</h4>
+          <ul class="activity-list">
+            <li>Traverse the rugged terrain to reach the legendary Pangong Tso.</li>
+            <li>Experience the lake's famous color-changing waters (from blue to green).</li>
+            <li>Overnight stay in luxury tents under the clearest starlit sky.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="day-card glass reveal">
+        <div class="day-num">
+          <h3>06</h3>
+          <span>Return</span>
+        </div>
+        <div class="day-content">
+          <h4>Pangong to Leh Return</h4>
+          <ul class="activity-list">
+            <li>Morning stroll by the lake for sunrise photography.</li>
+            <li>Visit the local nomadic markets for pashmina and woollens.</li>
+            <li>Drive back to Leh via Chang La Pass, returning to the hotel by evening.</li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="day-card glass reveal">
+        <div class="day-num">
+          <h3>07</h3>
+          <span>Farewell</span>
+        </div>
+        <div class="day-content">
+          <h4>The Final Mountain Breath</h4>
+          <ul class="activity-list">
+            <li>Final Himalayan breakfast with a view of the peaks.</li>
+            <li>Check-out and transfer to the airport with a heart full of Leh.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="highlights">
+    <div class="section-head reveal">
+      <h2>Scenic Highlights</h2>
+      <p>MOMENTS CAPTURED IN THE WILD</p>
+    </div>
+    <div class="scenic-grid">
+      <div class="scenic-item reveal">
+        <img src="images/pangng.png" alt="Pangong Lake">
+        <div class="scenic-overlay">
+          <h4>Pangong Tso</h4>
+          <p>The cobalt blue wonder stretching across borders.</p>
+        </div>
+      </div>
+      <div class="scenic-item reveal">
+        <img src="images/nubra.png" alt="Nubra Valley">
+        <div class="scenic-overlay">
+          <h4>Nubra Valley</h4>
+          <p>The cold desert of sand dunes and double-humped camels.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="wisdom">
+    <div class="section-head reveal">
+      <h2>Mountain Wisdom</h2>
+      <p>ESSENTIAL TIPS FOR THE TRAIL</p>
+    </div>
+    <div class="tips-grid">
+      <div class="tip-card glass reveal">
+        <div class="tip-icon">🏔️</div>
+        <h4>Acclimatization</h4>
+        <p>Resting on the first day is not an option, it's a necessity. Avoid heavy activities to let your body adjust
+          to the thin air.</p>
+      </div>
+      <div class="tip-card glass reveal">
+        <div class="tip-icon">💧</div>
+        <h4>Hydration</h4>
+        <p>Drink at least 3-4 liters of water daily. Hydration is the best defense against Acute Mountain Sickness
+          (AMS).</p>
+      </div>
+      <div class="tip-card glass reveal">
+        <div class="tip-icon">🧥</div>
+        <h4>Layering</h4>
+        <p>The mountain sun is harsh, but the wind is biting. Always wear layers even if it looks sunny outside.</p>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <div class="footer-quote">
+      "The mountains are calling and I must go."
+    </div>
+    <div class="footer-copy">
+      © 2026 TRIPZING — THE HIMALAYAN EDITION
+    </div>
+  </footer>
+
+  <script>
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.classList.add('scrolled');
+      } else {
+        nav.classList.remove('scrolled');
+      }
+    });
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('active');
+        }
+      });
+    }, { threshold: 0.1 });
+
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+
+</html>

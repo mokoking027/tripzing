@@ -1,0 +1,749 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jaipur Itinerary - Tripzing</title>
+    <meta name="description" content="A curated 3-day premium travel itinerary to Jaipur, the Pink City.">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&display=swap"
+        rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4af37;
+            --gold-light: #f1e5ac;
+            --maroon: #800000;
+            --maroon-dark: #4d0000;
+            --beige: #f8f1e7;
+            --text-dark: #3b2f28;
+            --text-muted: #6a5a4f;
+            --white: #ffffff;
+            --shadow-sm: 0 4px 12px rgba(0, 0, 0, 0.05);
+            --shadow-md: 0 10px 30px rgba(0, 0, 0, 0.1);
+            --transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: var(--beige);
+            color: var(--text-dark);
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            background-image: url("images/cream-paper.png");
+        }
+
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: var(--beige);
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 20px 5%;
+            background: rgba(248, 241, 231, 0.85);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(212, 175, 55, 0.2);
+            transition: var(--transition);
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            font-weight: 700;
+            color: var(--maroon);
+            letter-spacing: 1px;
+        }
+
+        .logo em {
+            color: var(--gold);
+            font-style: italic;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: var(--text-muted);
+            font-size: 14px;
+            text-decoration: none;
+            letter-spacing: 1px;
+            font-weight: 500;
+            text-transform: uppercase;
+            transition: var(--transition);
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--gold);
+            transition: var(--transition);
+        }
+
+        .nav-links a:hover::after,
+        .nav-links a.on::after {
+            width: 100%;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.on {
+            color: var(--maroon);
+        }
+
+        .hero {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            color: var(--white);
+            background: url('images/hmahal.png') no-repeat center center/cover;
+            padding: 0 20px;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.3), rgba(128, 0, 0, 0.6));
+            z-index: 1;
+        }
+
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            max-width: 800px;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(40px, 8vw, 80px);
+            font-weight: 700;
+            margin-bottom: 20px;
+            line-height: 1.1;
+            text-shadow: 2px 4px 10px rgba(0, 0, 0, 0.3);
+        }
+
+        .hero h1 span {
+            color: var(--gold);
+            display: block;
+            font-size: 0.4em;
+            text-transform: uppercase;
+            letter-spacing: 10px;
+            margin-bottom: 10px;
+        }
+
+        .hero .btn-gold {
+            display: inline-block;
+            margin-top: 30px;
+            padding: 15px 40px;
+            background: linear-gradient(135deg, var(--gold), #b8860b);
+            color: var(--maroon-dark);
+            text-decoration: none;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 50px;
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            transition: var(--transition);
+        }
+
+        .hero .btn-gold:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 175, 55, 0.4);
+            filter: brightness(1.1);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 100px 5%;
+        }
+
+        .sec-head {
+            text-align: center;
+            margin-bottom: 60px;
+            position: relative;
+        }
+
+        .sec-head h2 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(28px, 4vw, 40px);
+            color: var(--maroon);
+            margin-bottom: 15px;
+            position: relative;
+            display: inline-block;
+        }
+
+        .sec-head h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 3px;
+            background: var(--gold);
+        }
+
+        .paper {
+            background: var(--white);
+            border-radius: 15px;
+            padding: 40px;
+            box-shadow: var(--shadow-sm);
+            transition: var(--transition);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .paper:hover {
+            transform: translateY(-10px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .info-box {
+            text-align: center;
+            font-size: 18px;
+            line-height: 1.8;
+            color: var(--text-muted);
+            margin-bottom: 100px;
+            font-style: italic;
+        }
+
+        .info-box::before {
+            content: '“';
+            font-family: 'Playfair Display', serif;
+            font-size: 80px;
+            color: var(--gold);
+            opacity: 0.3;
+            position: absolute;
+            top: -20px;
+            left: 20px;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 2px;
+            background: linear-gradient(180deg, var(--gold), var(--maroon), transparent);
+        }
+
+        .day {
+            margin-bottom: 50px;
+        }
+
+        .day-dot {
+            position: absolute;
+            left: 11px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: var(--white);
+            border: 4px solid var(--gold);
+            z-index: 2;
+            box-shadow: 0 0 10px rgba(212, 175, 55, 0.5);
+        }
+
+        .day-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 26px;
+            color: var(--maroon);
+            margin-bottom: 15px;
+        }
+
+        .day-tag {
+            background: var(--beige);
+            color: var(--maroon);
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-left: 15px;
+            border: 1px solid rgba(128, 0, 0, 0.1);
+        }
+
+        .itinerary-list li {
+            list-style: none;
+            position: relative;
+            padding-left: 30px;
+            margin-bottom: 15px;
+            color: var(--text-dark);
+            line-height: 1.6;
+        }
+
+        .itinerary-list li::before {
+            content: '✦';
+            position: absolute;
+            left: 0;
+            color: var(--gold);
+        }
+
+        .grid-section {
+            margin-bottom: 100px;
+        }
+
+        .responsive-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .img-card {
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            aspect-ratio: 4/5;
+            box-shadow: var(--shadow-sm);
+            cursor: pointer;
+        }
+
+        .img-card img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .img-card:hover img {
+            transform: scale(1.1);
+        }
+
+        .img-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(128, 0, 0, 0.9), transparent 70%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 30px;
+            color: var(--white);
+            opacity: 0.9;
+            transition: var(--transition);
+        }
+
+        .img-card:hover .img-overlay {
+            opacity: 1;
+            padding-bottom: 40px;
+        }
+
+        .img-overlay h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 22px;
+            margin-bottom: 5px;
+        }
+
+        .img-overlay p {
+            font-size: 14px;
+            color: var(--gold-light);
+            letter-spacing: 1px;
+        }
+
+        .food-card {
+            background: var(--white);
+            border-radius: 18px;
+            overflow: hidden;
+            box-shadow: var(--shadow-sm);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            transition: var(--transition);
+        }
+
+        .food-card:hover {
+            transform: translateY(-8px);
+            box-shadow: var(--shadow-md);
+            border-color: rgba(212, 175, 55, 0.3);
+        }
+
+        .food-card img {
+            width: 100%;
+            height: 220px;
+            object-fit: cover;
+            transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .food-card:hover img {
+            transform: scale(1.08);
+        }
+
+        .food-card-content {
+            padding: 22px;
+        }
+
+        .food-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--maroon);
+            margin-bottom: 10px;
+        }
+
+        .food-card p {
+            font-size: 14px;
+            line-height: 1.7;
+            color: var(--text-muted);
+        }
+
+        .text-card {
+            height: 100%;
+        }
+
+        .text-card h4 {
+            font-family: 'Playfair Display', serif;
+            font-size: 24px;
+            color: var(--maroon);
+            margin-bottom: 20px;
+        }
+
+        .text-card ul li {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(128, 0, 0, 0.05);
+            font-size: 15px;
+        }
+
+        .text-card ul li span:last-child {
+            color: var(--gold);
+            font-weight: 600;
+        }
+
+        footer {
+            background: var(--maroon-dark);
+            color: var(--white);
+            text-align: center;
+            padding: 60px 20px;
+            margin-top: 100px;
+        }
+
+        footer p {
+            font-size: 14px;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 15px 5%;
+            }
+
+            .nav-links {
+                display: none;
+            }
+
+            .hero h1 {
+                font-size: 45px;
+            }
+
+            .container {
+                padding: 60px 20px;
+            }
+
+            .timeline {
+                padding-left: 30px;
+            }
+
+            .timeline::before {
+                left: 10px;
+            }
+
+            .day-dot {
+                left: 1px;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="page-wrap">
+        <nav>
+            <div class="logo">Trip<em>zing</em></div>
+            <div class="nav-links">
+                <a href="index.html">Home</a>
+                <a href="itinerary.html">Itinerary</a>
+                <a href="jaipur.html" class="on">Jaipur</a>
+            </div>
+        </nav>
+
+        <header class="hero">
+            <div class="hero-content" data-aos="fade-up">
+                <h1><span>The Pink City</span>Jaipur – Royal Heritage</h1>
+                <a href="#itinerary" class="btn-gold">Explore the Kingdom</a>
+            </div>
+        </header>
+
+        <div class="container">
+
+            <section class="info-box paper" data-aos="fade-up">
+                Jaipur, known as the "Pink City," is the capital of Rajasthan, India, founded in 1727 by Maharaja Sawai
+                Jai Singh II. Famous for its iconic terracotta-colored buildings, it is India’s first planned city,
+                blending Rajput, Mughal, and European architectural styles. As a major tourist destination, it offers
+                stunning landmarks like the City Palace, Hawa Mahal, and Amber Fort, while serving as a vibrant hub for
+                culture, jewelry, and textiles.
+            </section>
+
+            <section id="itinerary" class="timeline-section">
+                <div class="sec-head" data-aos="fade-up">
+                    <h2>3-Day Royal Journey</h2>
+                </div>
+
+                <div class="timeline">
+                    <div class="day" data-aos="fade-left">
+                        <div class="day-dot"></div>
+                        <div class="day-card paper">
+                            <div class="day-header">
+                                <h3 class="day-title">Day 1: Arrival & Architecture</h3>
+                                <span class="day-tag">Forts & Palaces</span>
+                            </div>
+                            <ul class="itinerary-list">
+                                <li>Check in to hotel 'Holiday Inn', get ready and go for breakfast at 10 AM.</li>
+                                <li>A black XUV will pick you up from the location at 11 AM.</li>
+                                <li>Your first spot will be the <strong>Amer Fort</strong>. Experience the majestic
+                                    views from the top and click beautiful pictures. 🏰</li>
+                                <li>Head to the iconic <strong>Hawa Mahal</strong> and visit the beautiful City Palace
+                                    nearby. 🌬️</li>
+                                <li>Around 2 PM, have lunch at Wind View Cafe, offering a surreal view of the mahal.
+                                </li>
+                                <li>Head back to your hotel to relax and refresh.</li>
+                                <li>At 4 PM, leave for the astronomical observatory, <strong>Jantar Mantar</strong>. 🔭
+                                </li>
+                                <li>In the evening around 6 PM, explore the famous <strong>Johari Bazaar</strong> and
+                                    try local street food. 🛍️</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="day" data-aos="fade-left" data-aos-delay="100">
+                        <div class="day-dot"></div>
+                        <div class="day-card paper">
+                            <div class="day-header">
+                                <h3 class="day-title">Day 2: Vistas & Culture</h3>
+                                <span class="day-tag">Hills & Heritage</span>
+                            </div>
+                            <ul class="itinerary-list">
+                                <li>Have a hearty breakfast in the hotel at 9:30 AM.</li>
+                                <li>Visit the <strong>Nahargarh Fort</strong>, including the famous Sheesh Mahal and Wax
+                                    Museum. 🌄</li>
+                                <li>Explore the nearby <strong>Jaigarh Fort</strong>, a prominent historical
+                                    destination. 🏯</li>
+                                <li>Around 2 PM, have a luxurious lunch at Suvarna Mahal restaurant. Afterwards, take a
+                                    local stroll in the city on e-rickshaws.</li>
+                                <li>In the evening, visit the beautiful <strong>Jal Mahal</strong> (Water Palace),
+                                    stunningly illuminated by evening lights. 🌊</li>
+                                <li>The final stop is a cultural evening at <strong>Chokhi Dhani</strong>. Experience
+                                    authentic Rajasthani themes and relish the famous Rajasthani Thali. 🎭</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="day" data-aos="fade-left" data-aos-delay="200">
+                        <div class="day-dot"></div>
+                        <div class="day-card paper">
+                            <div class="day-header">
+                                <h3 class="day-title">Day 3: Museums & Markets</h3>
+                                <span class="day-tag">Shopping & Departure</span>
+                            </div>
+                            <ul class="itinerary-list">
+                                <li>In the morning, visit the stunning <strong>Albert Hall Museum</strong>. 🏛️</li>
+                                <li>Visit the serene <strong>Birla Mandir</strong> and grab breakfast at local stalls
+                                    featuring famous Kachori and Lassi. 🕊️</li>
+                                <li>Proceed to <strong>Bapu Bazaar</strong> for traditional shopping (auto-rickshaw
+                                    recommended due to crowds). 🛒</li>
+                                <li>Return to the hotel for a relaxing dinner in the evening. 🍛</li>
+                                <li>The next morning, the car will drop you off at the airport.</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid-section">
+                <div class="sec-head" data-aos="fade-up">
+                    <h2>Must-Visit Highlights</h2>
+                </div>
+                <div class="responsive-grid">
+                    <div class="img-card" data-aos="zoom-in">
+                        <img src="images/hmahal.png" alt="Hawa Mahal">
+                        <div class="img-overlay">
+                            <h4>Hawa Mahal</h4>
+                            <p>Palace of Winds</p>
+                        </div>
+                    </div>
+                    <div class="img-card" data-aos="zoom-in" data-aos-delay="100">
+                        <img src="images/amerft.png" alt="Amer Fort">
+                        <div class="img-overlay">
+                            <h4>Amer Fort</h4>
+                            <p>Hilltop Majesty</p>
+                        </div>
+                    </div>
+                    <div class="img-card" data-aos="zoom-in" data-aos-delay="200">
+                        <img src="images/ptgate.png" alt="Patrika Gate">
+                        <div class="img-overlay">
+                            <h4>Patrika Gate</h4>
+                            <p>Vibrant Architecture</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid-section">
+                <div class="sec-head" data-aos="fade-up">
+                    <h2>Stay & Dine</h2>
+                </div>
+                <div class="responsive-grid">
+                    <div class="text-card paper" data-aos="fade-right">
+                        <h4>Recommended Stays</h4>
+                        <p>From heritage havelis to luxury resorts, Jaipur offers stays fit for royalty.</p>
+                        <ul>
+                            <li><span>Taj Rambagh Palace</span> <span>Luxury</span></li>
+                            <li><span>Samode Haveli</span> <span>Heritage</span></li>
+                            <li><span>Holiday Inn</span> <span>Premium</span></li>
+                            <li><span>Pearl Palace</span> <span>Boutique</span></li>
+                        </ul>
+                    </div>
+                    <div class="text-card paper" data-aos="fade-left">
+                        <h4>Culinary Delights</h4>
+                        <p>Savor the rich, spicy, and sweet flavors of authentic Rajasthani cuisine.</p>
+                        <ul>
+                            <li><span>Suvarna Mahal</span> <span>Fine Dining</span></li>
+                            <li><span>Chokhi Dhani</span> <span>Traditional Thali</span></li>
+                            <li><span>Rawat Mishthan Bhandar</span> <span>Kachori</span></li>
+                            <li><span>Laxmi Mishthan Bhandar</span> <span>Ghevar</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid-section">
+                <div class="sec-head" data-aos="fade-up">
+                    <h2>Cuisine of Jaipur</h2>
+                </div>
+                <div class="responsive-grid">
+                    <div class="food-card" data-aos="zoom-in">
+                        <img src="images/jdal.jpg" alt="Dal Baati Churma">
+                        <div class="food-card-content">
+                            <h3>Dal Baati Churma</h3>
+                            <p>A timeless Rajasthani classic with baked baati, spiced dal, and sweet churma served
+                                together.</p>
+                        </div>
+                    </div>
+                    <div class="food-card" data-aos="zoom-in" data-aos-delay="80">
+                        <img src="images/jghwr.jpg" alt="Ghewar">
+                        <div class="food-card-content">
+                            <h3>Ghewar</h3>
+                            <p>A festive honeycomb dessert topped with saffron, rabri, and nuts for rich sweetness.</p>
+                        </div>
+                    </div>
+                    <div class="food-card" data-aos="zoom-in" data-aos-delay="160">
+                        <img src="images/jlaal.jpg" alt="Laal Maas">
+                        <div class="food-card-content">
+                            <h3>Laal Maas</h3>
+                            <p>Fiery mutton curry cooked with red chilies and robust spices, iconic to Rajasthan.</p>
+                        </div>
+                    </div>
+                    <div class="food-card" data-aos="zoom-in">
+                        <img src="images/jpyaaz.jpg" alt="Pyaaz Kachori">
+                        <div class="food-card-content">
+                            <h3>Pyaaz Kachori</h3>
+                            <p>Crispy flaky pastry stuffed with spicy onion masala, a beloved Jaipur street snack.</p>
+                        </div>
+                    </div>
+                    <div class="food-card" data-aos="zoom-in" data-aos-delay="80">
+                        <img src="images/jker.jpg" alt="Ker Sangri">
+                        <div class="food-card-content">
+                            <h3>Ker Sangri</h3>
+                            <p>A desert-specialty sabzi of berries and beans, tangy, earthy, and deeply traditional.</p>
+                        </div>
+                    </div>
+                    <div class="food-card" data-aos="zoom-in" data-aos-delay="160">
+                        <img src="images/jmawa.jpg" alt="Mawa Kachori">
+                        <div class="food-card-content">
+                            <h3>Mawa Kachori</h3>
+                            <p>Sweet fried kachori filled with mawa and dry fruits, finished with fragrant sugar syrup.
+                            </p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="grid-section" data-aos="fade-up">
+                <div class="text-card paper" style="text-align: center; border-bottom: 5px solid var(--gold);">
+                    <h4>Essential Travel Tips</h4>
+                    <p style="max-width: 800px; margin: 0 auto 20px; font-size: 16px;">
+                        The best time to visit Jaipur is from <strong>October to March</strong> when the weather is
+                        pleasant.
+                        Always bargain at local markets like Johari and Bapu Bazaar. Wear comfortable walking shoes for
+                        the forts,
+                        and stay hydrated. Auto-rickshaws and e-rickshaws are the best way to navigate crowded streets.
+                    </p>
+                </div>
+            </section>
+
+        </div>
+
+        <footer>
+            <p>© 2026 Jaipur Royal Travels — A Premium Experience</p>
+        </footer>
+    </div>
+
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 100,
+                easing: 'ease-in-out'
+            });
+        });
+    </script>
+</body>
+
+</html>
